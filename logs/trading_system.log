@@ -1,0 +1,86 @@
+2026-06-30 21:17:10.423 | INFO     | __main__:main:11 - ==================================================
+2026-06-30 21:17:10.427 | INFO     | __main__:main:12 - 🚀 Starting AlphaQuant-Gold [v1.0.0]
+2026-06-30 21:17:10.437 | INFO     | __main__:main:13 - 📦 Execution Mode: DEVELOPMENT
+2026-06-30 21:17:10.445 | INFO     | __main__:main:14 - 🎯 Target Asset: GC=F
+2026-06-30 21:17:10.452 | INFO     | __main__:main:15 - ==================================================
+2026-06-30 21:17:10.460 | DEBUG    | __main__:main:17 - นี่คือข้อความระดับ DEBUG (จะเห็นเฉพาะในโหมด development)
+2026-06-30 21:17:10.480 | SUCCESS  | __main__:main:18 - Phase 1: Environment & Architecture พร้อมปฏิบัติงานครับ!
+2026-06-30 21:26:50.461 | INFO     | __main__:main:12 - ==================================================
+2026-06-30 21:26:50.462 | INFO     | __main__:main:13 - 🚀 Starting AlphaQuant-Gold [Phase 2: Data Synchronizer]
+2026-06-30 21:26:50.462 | INFO     | __main__:main:14 - ==================================================
+2026-06-30 21:26:50.463 | INFO     | __main__:main:26 - --- Loading Target Asset: GC=F ---
+2026-06-30 21:26:50.463 | WARNING  | src.data_pipeline.yfinance_loader:fetch_data:11 - YFinance จำกัดข้อมูล 15m สูงสุด 60 วัน (ปรับอัตโนมัติจาก 365 -> 60)
+2026-06-30 21:26:50.463 | INFO     | src.data_pipeline.yfinance_loader:fetch_data:17 - Downloading GC=F [15m] from 2026-05-01 to 2026-06-30
+2026-06-30 21:26:57.641 | INFO     | __main__:main:31 - --- Loading Auxiliary Assets ---
+2026-06-30 21:26:57.642 | WARNING  | src.data_pipeline.yfinance_loader:fetch_data:11 - YFinance จำกัดข้อมูล 15m สูงสุด 60 วัน (ปรับอัตโนมัติจาก 365 -> 60)
+2026-06-30 21:26:57.643 | INFO     | src.data_pipeline.yfinance_loader:fetch_data:17 - Downloading DX-Y.NYB [15m] from 2026-05-01 to 2026-06-30
+2026-06-30 21:26:57.948 | WARNING  | src.data_pipeline.yfinance_loader:fetch_data:11 - YFinance จำกัดข้อมูล 15m สูงสุด 60 วัน (ปรับอัตโนมัติจาก 365 -> 60)
+2026-06-30 21:26:57.948 | INFO     | src.data_pipeline.yfinance_loader:fetch_data:17 - Downloading SI=F [15m] from 2026-05-01 to 2026-06-30
+2026-06-30 21:26:58.291 | INFO     | src.data_pipeline.synchronizer:merge_cross_assets:11 - เริ่มกระบวนการ Cross-Asset Synchronization...
+2026-06-30 21:26:58.299 | DEBUG    | src.data_pipeline.synchronizer:merge_cross_assets:37 - Missing Values Cleared: ก่อน 925 -> หลัง 0
+2026-06-30 21:26:58.299 | SUCCESS  | src.data_pipeline.synchronizer:merge_cross_assets:38 - Final Synchronized Shape: (3654, 15)
+2026-06-30 21:35:41.328 | INFO     | __main__:main:12 - ==================================================
+2026-06-30 21:35:41.328 | INFO     | __main__:main:13 - 🚀 Starting AlphaQuant-Gold [Phase 2: Data Synchronizer]
+2026-06-30 21:35:41.328 | INFO     | __main__:main:14 - ==================================================
+2026-06-30 21:35:41.328 | INFO     | __main__:main:26 - --- Loading Target Asset: GC=F ---
+2026-06-30 21:35:41.328 | WARNING  | src.data_pipeline.yfinance_loader:fetch_data:11 - YFinance จำกัดข้อมูล 15m สูงสุด 60 วัน (ปรับอัตโนมัติจาก 365 -> 60)
+2026-06-30 21:35:41.328 | INFO     | src.data_pipeline.yfinance_loader:fetch_data:17 - Downloading GC=F [15m] from 2026-05-01 to 2026-06-30
+2026-06-30 21:35:42.486 | INFO     | __main__:main:31 - --- Loading Auxiliary Assets ---
+2026-06-30 21:35:42.486 | WARNING  | src.data_pipeline.yfinance_loader:fetch_data:11 - YFinance จำกัดข้อมูล 15m สูงสุด 60 วัน (ปรับอัตโนมัติจาก 365 -> 60)
+2026-06-30 21:35:42.487 | INFO     | src.data_pipeline.yfinance_loader:fetch_data:17 - Downloading DX-Y.NYB [15m] from 2026-05-01 to 2026-06-30
+2026-06-30 21:35:43.002 | WARNING  | src.data_pipeline.yfinance_loader:fetch_data:11 - YFinance จำกัดข้อมูล 15m สูงสุด 60 วัน (ปรับอัตโนมัติจาก 365 -> 60)
+2026-06-30 21:35:43.002 | INFO     | src.data_pipeline.yfinance_loader:fetch_data:17 - Downloading SI=F [15m] from 2026-05-01 to 2026-06-30
+2026-06-30 21:35:43.432 | INFO     | src.data_pipeline.synchronizer:merge_cross_assets:11 - เริ่มกระบวนการ Cross-Asset Synchronization...
+2026-06-30 21:35:43.439 | DEBUG    | src.data_pipeline.synchronizer:merge_cross_assets:37 - Missing Values Cleared: ก่อน 925 -> หลัง 0
+2026-06-30 21:35:43.439 | SUCCESS  | src.data_pipeline.synchronizer:merge_cross_assets:38 - Final Synchronized Shape: (3654, 15)
+2026-06-30 21:39:08.217 | INFO     | __main__:main:12 - ==================================================
+2026-06-30 21:39:08.217 | INFO     | __main__:main:13 - 🚀 Starting AlphaQuant-Gold [Phase 2: Data Synchronizer]
+2026-06-30 21:39:08.217 | INFO     | __main__:main:14 - ==================================================
+2026-06-30 21:39:08.217 | INFO     | __main__:main:26 - --- Loading Target Asset: GC=F ---
+2026-06-30 21:39:08.217 | WARNING  | src.data_pipeline.yfinance_loader:fetch_data:11 - YFinance จำกัดข้อมูล 15m สูงสุด 60 วัน (ปรับอัตโนมัติจาก 365 -> 60)
+2026-06-30 21:39:08.217 | INFO     | src.data_pipeline.yfinance_loader:fetch_data:17 - Downloading GC=F [15m] from 2026-05-01 to 2026-06-30
+2026-06-30 21:39:09.433 | INFO     | __main__:main:31 - --- Loading Auxiliary Assets ---
+2026-06-30 21:39:09.433 | WARNING  | src.data_pipeline.yfinance_loader:fetch_data:11 - YFinance จำกัดข้อมูล 15m สูงสุด 60 วัน (ปรับอัตโนมัติจาก 365 -> 60)
+2026-06-30 21:39:09.433 | INFO     | src.data_pipeline.yfinance_loader:fetch_data:17 - Downloading DX-Y.NYB [15m] from 2026-05-01 to 2026-06-30
+2026-06-30 21:39:10.023 | WARNING  | src.data_pipeline.yfinance_loader:fetch_data:11 - YFinance จำกัดข้อมูล 15m สูงสุด 60 วัน (ปรับอัตโนมัติจาก 365 -> 60)
+2026-06-30 21:39:10.023 | INFO     | src.data_pipeline.yfinance_loader:fetch_data:17 - Downloading SI=F [15m] from 2026-05-01 to 2026-06-30
+2026-06-30 21:39:10.751 | INFO     | src.data_pipeline.synchronizer:merge_cross_assets:11 - เริ่มกระบวนการ Cross-Asset Synchronization...
+2026-06-30 21:39:10.815 | DEBUG    | src.data_pipeline.synchronizer:merge_cross_assets:37 - Missing Values Cleared: ก่อน 925 -> หลัง 0
+2026-06-30 21:39:10.820 | SUCCESS  | src.data_pipeline.synchronizer:merge_cross_assets:38 - Final Synchronized Shape: (3654, 15)
+2026-06-30 21:39:10.938 | SUCCESS  | __main__:main:48 - บันทึกข้อมูลเรียบร้อยที่: data/processed/base_synced_data.parquet
+2026-06-30 22:17:04.825 | INFO     | __main__:main:13 - ==================================================
+2026-06-30 22:17:04.825 | INFO     | __main__:main:14 - 🚀 Starting AlphaQuant-Gold [Phase 1-3]
+2026-06-30 22:17:04.825 | INFO     | __main__:main:15 - ==================================================
+2026-06-30 22:17:04.825 | WARNING  | src.data_pipeline.yfinance_loader:fetch_data:11 - YFinance จำกัดข้อมูล 15m สูงสุด 60 วัน (ปรับอัตโนมัติจาก 365 -> 60)
+2026-06-30 22:17:04.825 | INFO     | src.data_pipeline.yfinance_loader:fetch_data:17 - Downloading GC=F [15m] from 2026-05-01 to 2026-06-30
+2026-06-30 22:17:06.789 | WARNING  | src.data_pipeline.yfinance_loader:fetch_data:11 - YFinance จำกัดข้อมูล 15m สูงสุด 60 วัน (ปรับอัตโนมัติจาก 365 -> 60)
+2026-06-30 22:17:06.789 | INFO     | src.data_pipeline.yfinance_loader:fetch_data:17 - Downloading DX-Y.NYB [15m] from 2026-05-01 to 2026-06-30
+2026-06-30 22:17:07.305 | WARNING  | src.data_pipeline.yfinance_loader:fetch_data:11 - YFinance จำกัดข้อมูล 15m สูงสุด 60 วัน (ปรับอัตโนมัติจาก 365 -> 60)
+2026-06-30 22:17:07.305 | INFO     | src.data_pipeline.yfinance_loader:fetch_data:17 - Downloading SI=F [15m] from 2026-05-01 to 2026-06-30
+2026-06-30 22:17:07.782 | INFO     | src.data_pipeline.synchronizer:merge_cross_assets:11 - เริ่มกระบวนการ Cross-Asset Synchronization...
+2026-06-30 22:17:07.789 | DEBUG    | src.data_pipeline.synchronizer:merge_cross_assets:37 - Missing Values Cleared: ก่อน 925 -> หลัง 0
+2026-06-30 22:17:07.789 | SUCCESS  | src.data_pipeline.synchronizer:merge_cross_assets:38 - Final Synchronized Shape: (3657, 15)
+2026-06-30 22:17:07.789 | INFO     | src.data_pipeline.feature_engineer:generate_features:13 - เริ่มสร้าง Technical & Cross-Asset Features...
+2026-06-30 22:17:07.943 | INFO     | src.data_pipeline.feature_engineer:generate_target:81 - สร้าง Target: วิ่งเกิน 0.5 ATR ภายใน 3 แท่งถัดไป
+2026-06-30 22:17:07.949 | DEBUG    | src.data_pipeline.feature_engineer:generate_target:103 - Drop NaN (ช่วงก่อตัว Indicator & ท้ายตาราง): 3657 -> 3458 rows
+2026-06-30 22:17:08.018 | SUCCESS  | __main__:main:49 - Phase 3 เสร็จสมบูรณ์! Dataset Shape: (3458, 42)
+2026-06-30 22:17:08.018 | SUCCESS  | __main__:main:50 - จำนวน Feature ทั้งหมด: 40 Features
+2026-06-30 22:17:08.019 | INFO     | __main__:main:55 - โอกาสเกิด Long: 2014 ครั้ง, Short: 2218 ครั้ง จากทั้งหมด 3458 แท่ง
+2026-06-30 22:17:43.225 | INFO     | __main__:main:13 - ==================================================
+2026-06-30 22:17:43.225 | INFO     | __main__:main:14 - 🚀 Starting AlphaQuant-Gold [Phase 1-3]
+2026-06-30 22:17:43.225 | INFO     | __main__:main:15 - ==================================================
+2026-06-30 22:17:43.225 | WARNING  | src.data_pipeline.yfinance_loader:fetch_data:11 - YFinance จำกัดข้อมูล 15m สูงสุด 60 วัน (ปรับอัตโนมัติจาก 365 -> 60)
+2026-06-30 22:17:43.226 | INFO     | src.data_pipeline.yfinance_loader:fetch_data:17 - Downloading GC=F [15m] from 2026-05-01 to 2026-06-30
+2026-06-30 22:17:44.345 | WARNING  | src.data_pipeline.yfinance_loader:fetch_data:11 - YFinance จำกัดข้อมูล 15m สูงสุด 60 วัน (ปรับอัตโนมัติจาก 365 -> 60)
+2026-06-30 22:17:44.345 | INFO     | src.data_pipeline.yfinance_loader:fetch_data:17 - Downloading DX-Y.NYB [15m] from 2026-05-01 to 2026-06-30
+2026-06-30 22:17:44.879 | WARNING  | src.data_pipeline.yfinance_loader:fetch_data:11 - YFinance จำกัดข้อมูล 15m สูงสุด 60 วัน (ปรับอัตโนมัติจาก 365 -> 60)
+2026-06-30 22:17:44.879 | INFO     | src.data_pipeline.yfinance_loader:fetch_data:17 - Downloading SI=F [15m] from 2026-05-01 to 2026-06-30
+2026-06-30 22:17:45.432 | INFO     | src.data_pipeline.synchronizer:merge_cross_assets:11 - เริ่มกระบวนการ Cross-Asset Synchronization...
+2026-06-30 22:17:45.440 | DEBUG    | src.data_pipeline.synchronizer:merge_cross_assets:37 - Missing Values Cleared: ก่อน 925 -> หลัง 0
+2026-06-30 22:17:45.441 | SUCCESS  | src.data_pipeline.synchronizer:merge_cross_assets:38 - Final Synchronized Shape: (3657, 15)
+2026-06-30 22:17:45.441 | INFO     | src.data_pipeline.feature_engineer:generate_features:13 - เริ่มสร้าง Technical & Cross-Asset Features...
+2026-06-30 22:17:45.574 | INFO     | src.data_pipeline.feature_engineer:generate_target:81 - สร้าง Target: วิ่งเกิน 0.5 ATR ภายใน 3 แท่งถัดไป
+2026-06-30 22:17:45.580 | DEBUG    | src.data_pipeline.feature_engineer:generate_target:103 - Drop NaN (ช่วงก่อตัว Indicator & ท้ายตาราง): 3657 -> 3458 rows
+2026-06-30 22:17:45.636 | SUCCESS  | __main__:main:49 - Phase 3 เสร็จสมบูรณ์! Dataset Shape: (3458, 42)
+2026-06-30 22:17:45.636 | SUCCESS  | __main__:main:50 - จำนวน Feature ทั้งหมด: 40 Features
+2026-06-30 22:17:45.636 | INFO     | __main__:main:55 - โอกาสเกิด Long: 2014 ครั้ง, Short: 2218 ครั้ง จากทั้งหมด 3458 แท่ง

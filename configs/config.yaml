@@ -1,0 +1,27 @@
+project:
+  name: "AlphaQuant-Gold"
+  version: "1.0.0"
+  mode: "development"          # เปลี่ยนเป็น "production" ตอนเอาขึ้น Server
+
+data:
+  symbols:
+    target: "GC=F"             # Gold Futures (หรือใช้ XAUUSD=X ตาม Source)
+    auxiliary:
+      - "DX-Y.NYB"             # DXY
+      - "SI=F"                 # Silver Futures
+  lookback_days: 365
+  timeframes: ["1d", "4h", "1h", "15m"]
+
+model:
+  target_atr_multiplier: 0.5
+  min_confidence_prob: 0.70
+
+risk:
+  atr_period: 14
+  stop_loss_atr: 2.0
+  take_profit_atr: 4.0
+  risk_per_trade_pct: 1.5
+
+telegram:
+  bot_token: "YOUR_BOT_TOKEN_HERE"
+  chat_id: "YOUR_CHAT_ID_HERE"
