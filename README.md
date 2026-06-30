@@ -3,6 +3,7 @@
 Folder Architecture แบบ Separation of Concerns
 
 alpha_quant_ai/
+
 │
 ├── configs/
 │   └── config.yaml            # ศูนย์บัญชาการพารามิเตอร์ทั้งหมด
