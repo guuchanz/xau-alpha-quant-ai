@@ -1,3 +1,6 @@
+Setup
+Python 3.11.9
+---
 # 📈 XAU Alpha Quant AI Pipeline
 
 ระบบบอทเทรดและวิเคราะห์ราคาทองคำ (XAU/USD) ด้วย Machine Learning ที่ออกแบบมาสำหรับใช้งานบนระบบ Production (Windows Server) เน้นความเสถียร รองรับสถาปัตยกรรมแบบ Separation of Concerns และมี Data Pipeline ที่แม่นยำ
