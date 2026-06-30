@@ -1,44 +1,72 @@
-ตอนที่ 1: Project Architecture + Environment + Configuration
-เป้าหมายของตอนที่ 1 ไม่ใช่การเขียนโค้ดเทรด แต่คือการ "กันระบบพังตอนตี 3" เมื่อคุณต้องเอาไปรันบน Windows Server สิ่งที่เราจะสร้างในวันนี้มี 4 โครงสร้างหลัก:
-Folder Architecture แบบ Separation of Concerns
+# 📈 XAU Alpha Quant AI Pipeline
 
+ระบบบอทเทรดและวิเคราะห์ราคาทองคำ (XAU/USD) ด้วย Machine Learning ที่ออกแบบมาสำหรับใช้งานบนระบบ Production (Windows Server) เน้นความเสถียร รองรับสถาปัตยกรรมแบบ Separation of Concerns และมี Data Pipeline ที่แม่นยำ
+
+---
+
+## 🏗️ ตอนที่ 1: Project Architecture + Environment + Configuration
+
+เป้าหมายของเฟสนี้คือการ **"กันระบบพังตอนตี 3"** เมื่อนำไปรันจริงบน Production เซิร์ฟเวอร์ โดยแยกโครงสร้างพารามิเตอร์และการจัดการระบบออกจากโค้ด Logic 100%
+
+### 📁 โครงสร้างโปรเจกต์ (Folder Architecture)
+```text
 alpha_quant_ai/
-
 │
 ├── configs/
-│   └── config.yaml            # ศูนย์บัญชาการพารามิเตอร์ทั้งหมด
+│   └── config.yaml          # ศูนย์บัญชาการพารามิเตอร์ทั้งหมด
 │
 ├── data/
-│   ├── raw/                   # เก็บไฟล์ csv ดิบ (ห้ามแก้)
-│   └── processed/             # เก็บ parquet หลังจากทำ Feature แล้ว
+│   ├── raw/                 # เก็บไฟล์ CSV ดิบจากแหล่งข้อมูล (ห้ามแก้ไข)
+│   └── processed/           # เก็บไฟล์ Parquet หลังจากทำ Feature Engineering
 │
-├── logs/                      # เก็บไฟล์ Log รายวัน (Auto-rotate)
-├── models/                    # เก็บไฟล์ .pkl หรือ .joblib ของ LightGBM/XGBoost
+├── logs/                    # เก็บไฟล์ Log รายวัน (ระบบ Auto-rotate ป้องกันดิสก์เต็ม)
+│
+├── models/                  # เก็บไฟล์ .pkl หรือ .joblib ของ LightGBM / XGBoost
 │
 ├── src/
 │   ├── __init__.py
+│   │
 │   ├── utils/
 │   │   ├── __init__.py
-│   │   ├── config_loader.py   # ตัวแปลง YAML เป็น Python Dict
-│   │   └── logger.py          # ตัวจัดการ Loguru
+│   │   ├── config_loader.py # ตัวแปลงไฟล์ YAML เป็น Python Dictionary
+│   │   └── logger.py        # ตัวจัดการ Log ด้วย Loguru 
 │   │
-│   ├── data_pipeline/         # (สำหรับตอนที่ 2 และ 3)
-│   ├── ml_engine/             # (สำหรับตอนที่ 4 และ 5)
-│   ├── backtester/            # (สำหรับตอนที่ 6)
-│   └── live_trader/           # (สำหรับตอนที่ 7 และ 8)
+│   ├── data_pipeline/       # (สำหรับตอนที่ 2 และ 3)
+│   ├── ml_engine/           # (สำหรับตอนที่ 4 และ 5)
+│   ├── backtester/          # (สำหรับตอนที่ 6)
+│   └── live_trader/         # (สำหรับตอนที่ 7 และ 8)
 │
 ├── .gitignore
-├── requirements.txt
-└── main.py                    # Entry point ของระบบ
+├── requirements.txt         # ไฟล์ล็อกเวอร์ชันของ Library (ต้านทาน Dependency Rot)
+└── main.py                  # Entry point จุดเริ่มต้นการทำงานของระบบ
+```
 
-requirements.txt ที่ล็อกเวอร์ชันชัดเจน (ต้านทาน Dependency Rot)
-config.yaml + Config Loader (แยก Parameter ออกจาก Logic 100%)
-Production Logger (ป้องกันปัญหา Log ไฟล์ใหญ่จน Harddisk เต็มแล้วเซิร์ฟเวอร์ค้าง)
+### 🛠️ ส่วนประกอบสำคัญในระบบพื้นฐาน
+1. **`requirements.txt` ที่ล็อกเวอร์ชันชัดเจน**: ป้องกันปัญหา Dependency Rot หรือระบบพังจากการอัปเดตเวอร์ชันของ Library ในอนาคต
+2. **`config.yaml` + Config Loader**: แยกพารามิเตอร์และตัวแปรในการตั้งค่าออกจาก Logic ทั้งหมดอย่างเด็ดขาด ง่ายต่อการ Tuning โมเดล
+3. **Production Logger**: ตัวจัดการระบบ Log อัตโนมัติ ป้องกันปัญหา Log ไฟล์ใหญ่เกินไปจนฮาร์ดดิสก์เต็มและทำให้เซิร์ฟเวอร์ค้าง
 
-ตอนที่ 2: เมื่อโครงสร้างพื้นฐานพร้อมแล้ว เราจะเข้าสู่หัวใจของการทำ Data Pipeline ใน ตอนที่ 2: Data Loader & Cross-Asset Synchronization
-ในเฟสนี้เราจะต้องเจอกับ "ความจริงของโลก Quant" 2 ข้อ ที่เราต้องจัดการก่อนเขียนโค้ด:
-ข้อจำกัดของ Yahoo Finance: YFinance ไม่อนุญาตให้โหลดข้อมูล Timeframe ย่อยระดับนาที (เช่น 15m) ย้อนหลังเกิน 60 วัน (หากจะเอาย้อนหลัง 1-3 ปี ต้องไปต่อ API ของ OANDA, Polygon หรือ MT5) ดังนั้นในตอนที่ 2 นี้ ระบบจะบังคับให้ดึงได้สูงสุด 60 วันโดยอัตโนมัติ เพื่อให้เราพัฒนาระบบจนจบ PoC ก่อน
-การทำ Multi-Timeframe ไม่ใช่แค่การ Merge: กฎเหล็กคือ ต้องคำนวณ Indicator ของ Timeframe ใหญ่ (D1, H4) ให้เสร็จก่อน แล้วค่อยนำมา Merge กับแท่ง 15M หากเรา Merge ราคาดิบๆ ลงมาก่อน ค่าที่คำนวณจะได้ไม่ตรงกับกราฟจริง ดังนั้นในเฟสนี้เราจะทำ Cross-Asset Synchronization (นำทอง, ซิลเวอร์, ดอลลาร์ มารวมกัน) ก่อน ส่วน Multi-Timeframe จะถูกนำไปรวมอยู่ในตอนที่ 3 (Feature Engineering)
+---
 
-ตอนที่ 3: 
-ในเฟสนี้เราจะแปลงข้อมูล OHLCV ธรรมดาให้กลายเป็น Data Matrix ขนาด 40-80 คอลัมน์ โดยใช้ไลบรารี ta (Technical Analysis) เพื่อลดความซ้ำซ้อนของการเขียนสูตรเอง และไฮไลต์สำคัญคือ การสร้าง Target Label ($N$-bars ahead $\ge 0.5 \times \text{ATR}$) ที่ถูกต้องโดยไม่เกิด Look-ahead bias ครับขั้นตอนการสร้าง Feature Engineering Pipelineเราจะสร้างคลาสใหม่เพื่อรับผิดชอบการสร้าง Features และ Target โดยเฉพาะ
+## 🔄 ตอนที่ 2: Data Loader & Cross-Asset Synchronization
+
+การสร้าง Data Pipeline โดยจัดการกับข้อจำกัดจริงในโลกของการทำ Quant (Quant Reality):
+
+### ⚠️ ข้อจำกัดและกฎเหล็กที่ต้องจัดการ
+* **ข้อจำกัดของ Yahoo Finance (YFinance):** ไม่อนุญาตให้ดาวน์โหลดข้อมูล Timeframe ย่อยระดับนาที (เช่น 15m) ย้อนหลังเกิน 60 วัน (หากต้องการข้อมูลย้อนหลัง 1-3 ปีในอนาคต ต้องเชื่อมต่อ API ของ OANDA, Polygon หรือ MT5) ในเฟส PoC นี้ ระบบจะบังคับให้ดึงข้อมูลย้อนหลังสูงสุดได้ 60 วันโดยอัตโนมัติ
+* **การทำ Multi-Timeframe ไม่ใช่แค่การ Merge ข้อมูล:** กฎเหล็กคือต้องคำนวณ Indicator ของ Timeframe ใหญ่ (D1, H4) ให้เสร็จสิ้นก่อน แล้วจึงนำค่าที่ได้มา Merge ร่วมกับแท่งราคา 15m หากนำราคาดิบมา Merge ก่อน ค่าอินดิเคเตอร์ที่คำนวณได้จะไม่ตรงกับกราฟจริง
+
+### 🎯 ขอบเขตการทำงานในเฟสนี้
+ระบบจะทำการโหลดและเชื่อมโยงข้อมูลข้ามสินทรัพย์ (**Cross-Asset Synchronization**) โดยนำข้อมูลราคาทองคำ (Gold), เงิน (Silver) และดัชนีดอลลาร์ (US Dollar Index) มารวมเข้าด้วยกันในมิติของเวลาที่ถูกต้อง ส่วนระบบ Multi-Timeframe จะถูกยกไปรวมในขั้นตอนถัดไป
+
+---
+
+## 🧪 ตอนที่ 3: Feature Engineering Pipeline
+
+เฟสสำหรับการแปลงข้อมูลดิบ (OHLCV) ให้กลายเป็น **Data Matrix ขนาด 40-80 คอลัมน์** เพื่อพร้อมสำหรับส่งต่อให้ Machine Learning นำไปประมวลผล
+
+### 🚀 ขั้นตอนการทำงานและจุดเด่น
+1. **การคำนวณ Technical Indicator:** ใช้ไลบรารี `ta` (Technical Analysis) เพื่อลดความซ้ำซ้อนและป้องกันความผิดพลาดจากการเขียนสูตรคำนวณเอง
+2. **การสร้าง Target Label ที่ถูกต้อง:** ออกแบบฟังก์ชันคำนวณ Target ด้วยเงื่อนไข:
+   $$\text{Target Label} = N\text{-bars ahead} \ge 0.5 \times \text{ATR}$$
+3. **ป้องกัน Look-ahead Bias:** ออกแบบโครงสร้างคลาสเฉพาะ (`Feature Pipeline Class`) เพื่อควบคุมทิศทางการไหลของข้อมูล ป้องกันไม่ให้โมเดลเห็นข้อมูลในอนาคตระหว่างการคำนวณโดยเด็ดขาด
