@@ -84,3 +84,152 @@
 2026-06-30 22:17:45.636 | SUCCESS  | __main__:main:49 - Phase 3 เสร็จสมบูรณ์! Dataset Shape: (3458, 42)
 2026-06-30 22:17:45.636 | SUCCESS  | __main__:main:50 - จำนวน Feature ทั้งหมด: 40 Features
 2026-06-30 22:17:45.636 | INFO     | __main__:main:55 - โอกาสเกิด Long: 2014 ครั้ง, Short: 2218 ครั้ง จากทั้งหมด 3458 แท่ง
+2026-07-01 19:26:25.480 | INFO     | __main__:main:13 - ==================================================
+2026-07-01 19:26:25.480 | INFO     | __main__:main:14 - 🚀 Starting AlphaQuant-Gold [Phase 1-3]
+2026-07-01 19:26:25.480 | INFO     | __main__:main:15 - ==================================================
+2026-07-01 19:26:25.480 | WARNING  | src.data_pipeline.yfinance_loader:fetch_data:11 - YFinance จำกัดข้อมูล 15m สูงสุด 60 วัน (ปรับอัตโนมัติจาก 365 -> 60)
+2026-07-01 19:26:25.480 | INFO     | src.data_pipeline.yfinance_loader:fetch_data:17 - Downloading GC=F [15m] from 2026-05-02 to 2026-07-01
+2026-07-01 19:26:32.601 | WARNING  | src.data_pipeline.yfinance_loader:fetch_data:11 - YFinance จำกัดข้อมูล 15m สูงสุด 60 วัน (ปรับอัตโนมัติจาก 365 -> 60)
+2026-07-01 19:26:32.655 | INFO     | src.data_pipeline.yfinance_loader:fetch_data:17 - Downloading DX-Y.NYB [15m] from 2026-05-02 to 2026-07-01
+2026-07-01 19:26:33.049 | WARNING  | src.data_pipeline.yfinance_loader:fetch_data:11 - YFinance จำกัดข้อมูล 15m สูงสุด 60 วัน (ปรับอัตโนมัติจาก 365 -> 60)
+2026-07-01 19:26:33.049 | INFO     | src.data_pipeline.yfinance_loader:fetch_data:17 - Downloading SI=F [15m] from 2026-05-02 to 2026-07-01
+2026-07-01 19:26:33.383 | INFO     | src.data_pipeline.synchronizer:merge_cross_assets:11 - เริ่มกระบวนการ Cross-Asset Synchronization...
+2026-07-01 19:26:33.427 | DEBUG    | src.data_pipeline.synchronizer:merge_cross_assets:37 - Missing Values Cleared: ก่อน 955 -> หลัง 0
+2026-07-01 19:26:33.427 | SUCCESS  | src.data_pipeline.synchronizer:merge_cross_assets:38 - Final Synchronized Shape: (3738, 15)
+2026-07-01 19:26:33.427 | INFO     | src.data_pipeline.feature_engineer:generate_features:13 - เริ่มสร้าง Technical & Cross-Asset Features...
+2026-07-01 19:26:33.578 | INFO     | src.data_pipeline.feature_engineer:generate_target:81 - สร้าง Target: วิ่งเกิน 0.5 ATR ภายใน 3 แท่งถัดไป
+2026-07-01 19:26:33.597 | DEBUG    | src.data_pipeline.feature_engineer:generate_target:103 - Drop NaN (ช่วงก่อตัว Indicator & ท้ายตาราง): 3738 -> 3539 rows
+2026-07-01 19:26:34.792 | SUCCESS  | __main__:main:49 - Phase 3 เสร็จสมบูรณ์! Dataset Shape: (3539, 42)
+2026-07-01 19:26:34.792 | SUCCESS  | __main__:main:50 - จำนวน Feature ทั้งหมด: 40 Features
+2026-07-01 19:26:34.793 | INFO     | __main__:main:55 - โอกาสเกิด Long: 2059 ครั้ง, Short: 2267 ครั้ง จากทั้งหมด 3539 แท่ง
+2026-07-01 19:45:36.830 | INFO     | __main__:main:14 - ==================================================
+2026-07-01 19:45:36.831 | INFO     | __main__:main:15 - 🚀 Starting AlphaQuant-Gold [Phase 1-3]
+2026-07-01 19:45:36.831 | INFO     | __main__:main:16 - ==================================================
+2026-07-01 19:45:36.832 | WARNING  | src.data_pipeline.yfinance_loader:fetch_data:11 - YFinance จำกัดข้อมูล 15m สูงสุด 60 วัน (ปรับอัตโนมัติจาก 365 -> 60)
+2026-07-01 19:45:36.833 | INFO     | src.data_pipeline.yfinance_loader:fetch_data:17 - Downloading GC=F [15m] from 2026-05-02 to 2026-07-01
+2026-07-01 19:45:37.749 | WARNING  | src.data_pipeline.yfinance_loader:fetch_data:11 - YFinance จำกัดข้อมูล 15m สูงสุด 60 วัน (ปรับอัตโนมัติจาก 365 -> 60)
+2026-07-01 19:45:37.749 | INFO     | src.data_pipeline.yfinance_loader:fetch_data:17 - Downloading DX-Y.NYB [15m] from 2026-05-02 to 2026-07-01
+2026-07-01 19:45:38.081 | WARNING  | src.data_pipeline.yfinance_loader:fetch_data:11 - YFinance จำกัดข้อมูล 15m สูงสุด 60 วัน (ปรับอัตโนมัติจาก 365 -> 60)
+2026-07-01 19:45:38.081 | INFO     | src.data_pipeline.yfinance_loader:fetch_data:17 - Downloading SI=F [15m] from 2026-05-02 to 2026-07-01
+2026-07-01 19:45:38.456 | INFO     | src.data_pipeline.synchronizer:merge_cross_assets:11 - เริ่มกระบวนการ Cross-Asset Synchronization...
+2026-07-01 19:45:38.463 | DEBUG    | src.data_pipeline.synchronizer:merge_cross_assets:37 - Missing Values Cleared: ก่อน 955 -> หลัง 0
+2026-07-01 19:45:38.463 | SUCCESS  | src.data_pipeline.synchronizer:merge_cross_assets:38 - Final Synchronized Shape: (3739, 15)
+2026-07-01 19:45:38.463 | INFO     | src.data_pipeline.feature_engineer:generate_features:13 - เริ่มสร้าง Technical & Cross-Asset Features...
+2026-07-01 19:45:38.602 | INFO     | src.data_pipeline.feature_engineer:generate_target:81 - สร้าง Target: วิ่งเกิน 0.5 ATR ภายใน 3 แท่งถัดไป
+2026-07-01 19:45:38.608 | DEBUG    | src.data_pipeline.feature_engineer:generate_target:103 - Drop NaN (ช่วงก่อตัว Indicator & ท้ายตาราง): 3739 -> 3540 rows
+2026-07-01 19:45:38.679 | SUCCESS  | __main__:main:50 - Phase 3 เสร็จสมบูรณ์! Dataset Shape: (3540, 42)
+2026-07-01 19:45:38.679 | SUCCESS  | __main__:main:51 - จำนวน Feature ทั้งหมด: 40 Features
+2026-07-01 19:45:41.319 | INFO     | __main__:main:69 - เตรียมข้อมูล X (Features) และ y (Target)...
+2026-07-01 19:45:41.332 | INFO     | __main__:main:83 - จำนวน Features ทั้งหมดที่จะเข้าโมเดล: 31
+2026-07-01 19:45:41.333 | INFO     | src.ml_engine.lgb_trainer:optimize_and_train:62 - เริ่มกระบวนการ Optuna Hyperparameter Tuning (LightGBM)...
+2026-07-01 19:45:46.457 | SUCCESS  | src.ml_engine.lgb_trainer:optimize_and_train:72 - ค้นพบ Best Params: {'learning_rate': 0.09957716841662707, 'num_leaves': 8, 'max_depth': 4, 'min_child_samples': 195, 'feature_fraction': 0.5191592275865665, 'bagging_fraction': 0.899957985361294, 'reg_alpha': 9.634703003913621, 'reg_lambda': 0.12103708423100919, 'objective': 'binary', 'verbosity': -1}
+2026-07-01 19:45:46.457 | INFO     | src.ml_engine.lgb_trainer:optimize_and_train:75 - กำลัง Train โมเดลรอบสุดท้ายด้วย Best Params...
+2026-07-01 19:45:46.617 | INFO     | __main__:main:95 - 
+--- 🌟 Top 5 Feature Importance 🌟 ---
+2026-07-01 19:45:46.671 | SUCCESS  | __main__:main:102 - บันทึกโมเดลสำเร็จที่: models/lgb_long_model.pkl
+2026-07-01 20:02:00.264 | INFO     | __main__:main:15 - ==================================================
+2026-07-01 20:02:00.264 | INFO     | __main__:main:16 - 🚀 Starting AlphaQuant-Gold [Phase 1-3]
+2026-07-01 20:02:00.264 | INFO     | __main__:main:17 - ==================================================
+2026-07-01 20:02:00.264 | WARNING  | src.data_pipeline.yfinance_loader:fetch_data:11 - YFinance จำกัดข้อมูล 15m สูงสุด 60 วัน (ปรับอัตโนมัติจาก 365 -> 60)
+2026-07-01 20:02:00.264 | INFO     | src.data_pipeline.yfinance_loader:fetch_data:17 - Downloading GC=F [15m] from 2026-05-02 to 2026-07-01
+2026-07-01 20:02:01.098 | WARNING  | src.data_pipeline.yfinance_loader:fetch_data:11 - YFinance จำกัดข้อมูล 15m สูงสุด 60 วัน (ปรับอัตโนมัติจาก 365 -> 60)
+2026-07-01 20:02:01.098 | INFO     | src.data_pipeline.yfinance_loader:fetch_data:17 - Downloading DX-Y.NYB [15m] from 2026-05-02 to 2026-07-01
+2026-07-01 20:02:01.444 | WARNING  | src.data_pipeline.yfinance_loader:fetch_data:11 - YFinance จำกัดข้อมูล 15m สูงสุด 60 วัน (ปรับอัตโนมัติจาก 365 -> 60)
+2026-07-01 20:02:01.445 | INFO     | src.data_pipeline.yfinance_loader:fetch_data:17 - Downloading SI=F [15m] from 2026-05-02 to 2026-07-01
+2026-07-01 20:02:01.757 | INFO     | src.data_pipeline.synchronizer:merge_cross_assets:11 - เริ่มกระบวนการ Cross-Asset Synchronization...
+2026-07-01 20:02:01.764 | DEBUG    | src.data_pipeline.synchronizer:merge_cross_assets:37 - Missing Values Cleared: ก่อน 955 -> หลัง 0
+2026-07-01 20:02:01.764 | SUCCESS  | src.data_pipeline.synchronizer:merge_cross_assets:38 - Final Synchronized Shape: (3740, 15)
+2026-07-01 20:02:01.764 | INFO     | src.data_pipeline.feature_engineer:generate_features:13 - เริ่มสร้าง Technical & Cross-Asset Features...
+2026-07-01 20:02:01.915 | INFO     | src.data_pipeline.feature_engineer:generate_target:81 - สร้าง Target: วิ่งเกิน 0.5 ATR ภายใน 3 แท่งถัดไป
+2026-07-01 20:02:01.917 | DEBUG    | src.data_pipeline.feature_engineer:generate_target:103 - Drop NaN (ช่วงก่อตัว Indicator & ท้ายตาราง): 3740 -> 3541 rows
+2026-07-01 20:02:02.001 | SUCCESS  | __main__:main:51 - Phase 3 เสร็จสมบูรณ์! Dataset Shape: (3541, 42)
+2026-07-01 20:02:02.001 | SUCCESS  | __main__:main:52 - จำนวน Feature ทั้งหมด: 40 Features
+2026-07-01 20:02:02.063 | INFO     | __main__:main:70 - เตรียมข้อมูล X (Features) และ y (Target)...
+2026-07-01 20:02:02.063 | INFO     | __main__:main:84 - จำนวน Features ทั้งหมดที่จะเข้าโมเดล: 31
+2026-07-01 20:02:02.063 | INFO     | src.ml_engine.lgb_trainer:optimize_and_train:62 - เริ่มกระบวนการ Optuna Hyperparameter Tuning (LightGBM)...
+2026-07-01 20:02:06.605 | SUCCESS  | src.ml_engine.lgb_trainer:optimize_and_train:72 - ค้นพบ Best Params: {'learning_rate': 0.06227723630809731, 'num_leaves': 17, 'max_depth': 5, 'min_child_samples': 198, 'feature_fraction': 0.6932631032461909, 'bagging_fraction': 0.757489055102869, 'reg_alpha': 3.040315892195426, 'reg_lambda': 1.010730157430264, 'objective': 'binary', 'verbosity': -1}
+2026-07-01 20:02:06.605 | INFO     | src.ml_engine.lgb_trainer:optimize_and_train:75 - กำลัง Train โมเดลรอบสุดท้ายด้วย Best Params...
+2026-07-01 20:02:06.883 | INFO     | __main__:main:108 - นำ Best Params มาทดสอบเสมือนจริงด้วย Walk-Forward...
+2026-07-01 20:02:06.883 | INFO     | src.backtester.validator:evaluate:15 - เริ่มทำ Walk-Forward Validation จำนวน 5 Folds...
+2026-07-01 20:03:58.312 | INFO     | __main__:main:15 - ==================================================
+2026-07-01 20:03:58.312 | INFO     | __main__:main:16 - 🚀 Starting AlphaQuant-Gold [Phase 1-3]
+2026-07-01 20:03:58.312 | INFO     | __main__:main:17 - ==================================================
+2026-07-01 20:03:58.312 | WARNING  | src.data_pipeline.yfinance_loader:fetch_data:11 - YFinance จำกัดข้อมูล 15m สูงสุด 60 วัน (ปรับอัตโนมัติจาก 365 -> 60)
+2026-07-01 20:03:58.312 | INFO     | src.data_pipeline.yfinance_loader:fetch_data:17 - Downloading GC=F [15m] from 2026-05-02 to 2026-07-01
+2026-07-01 20:03:59.090 | WARNING  | src.data_pipeline.yfinance_loader:fetch_data:11 - YFinance จำกัดข้อมูล 15m สูงสุด 60 วัน (ปรับอัตโนมัติจาก 365 -> 60)
+2026-07-01 20:03:59.090 | INFO     | src.data_pipeline.yfinance_loader:fetch_data:17 - Downloading DX-Y.NYB [15m] from 2026-05-02 to 2026-07-01
+2026-07-01 20:03:59.473 | WARNING  | src.data_pipeline.yfinance_loader:fetch_data:11 - YFinance จำกัดข้อมูล 15m สูงสุด 60 วัน (ปรับอัตโนมัติจาก 365 -> 60)
+2026-07-01 20:03:59.473 | INFO     | src.data_pipeline.yfinance_loader:fetch_data:17 - Downloading SI=F [15m] from 2026-05-02 to 2026-07-01
+2026-07-01 20:03:59.892 | INFO     | src.data_pipeline.synchronizer:merge_cross_assets:11 - เริ่มกระบวนการ Cross-Asset Synchronization...
+2026-07-01 20:03:59.896 | DEBUG    | src.data_pipeline.synchronizer:merge_cross_assets:37 - Missing Values Cleared: ก่อน 955 -> หลัง 0
+2026-07-01 20:03:59.896 | SUCCESS  | src.data_pipeline.synchronizer:merge_cross_assets:38 - Final Synchronized Shape: (3740, 15)
+2026-07-01 20:03:59.896 | INFO     | src.data_pipeline.feature_engineer:generate_features:13 - เริ่มสร้าง Technical & Cross-Asset Features...
+2026-07-01 20:04:00.042 | INFO     | src.data_pipeline.feature_engineer:generate_target:81 - สร้าง Target: วิ่งเกิน 0.5 ATR ภายใน 3 แท่งถัดไป
+2026-07-01 20:04:00.049 | DEBUG    | src.data_pipeline.feature_engineer:generate_target:103 - Drop NaN (ช่วงก่อตัว Indicator & ท้ายตาราง): 3740 -> 3541 rows
+2026-07-01 20:04:00.107 | SUCCESS  | __main__:main:51 - Phase 3 เสร็จสมบูรณ์! Dataset Shape: (3541, 42)
+2026-07-01 20:04:00.107 | SUCCESS  | __main__:main:52 - จำนวน Feature ทั้งหมด: 40 Features
+2026-07-01 20:04:00.154 | INFO     | __main__:main:70 - เตรียมข้อมูล X (Features) และ y (Target)...
+2026-07-01 20:04:00.155 | INFO     | __main__:main:84 - จำนวน Features ทั้งหมดที่จะเข้าโมเดล: 31
+2026-07-01 20:04:00.155 | INFO     | src.ml_engine.lgb_trainer:optimize_and_train:62 - เริ่มกระบวนการ Optuna Hyperparameter Tuning (LightGBM)...
+2026-07-01 20:04:03.047 | SUCCESS  | src.ml_engine.lgb_trainer:optimize_and_train:72 - ค้นพบ Best Params: {'learning_rate': 0.021089488841676773, 'num_leaves': 16, 'max_depth': 4, 'min_child_samples': 182, 'feature_fraction': 0.8914303507488148, 'bagging_fraction': 0.6015321032995491, 'reg_alpha': 7.361511859992727, 'reg_lambda': 3.7537932931405305, 'objective': 'binary', 'verbosity': -1}
+2026-07-01 20:04:03.047 | INFO     | src.ml_engine.lgb_trainer:optimize_and_train:75 - กำลัง Train โมเดลรอบสุดท้ายด้วย Best Params...
+2026-07-01 20:04:03.195 | INFO     | __main__:main:108 - นำ Best Params มาทดสอบเสมือนจริงด้วย Walk-Forward...
+2026-07-01 20:04:03.195 | INFO     | src.backtester.validator:evaluate:15 - เริ่มทำ Walk-Forward Validation จำนวน 5 Folds...
+2026-07-01 20:08:59.468 | INFO     | __main__:main:15 - ==================================================
+2026-07-01 20:08:59.468 | INFO     | __main__:main:16 - 🚀 Starting AlphaQuant-Gold [Phase 1-3]
+2026-07-01 20:08:59.468 | INFO     | __main__:main:17 - ==================================================
+2026-07-01 20:08:59.468 | WARNING  | src.data_pipeline.yfinance_loader:fetch_data:11 - YFinance จำกัดข้อมูล 15m สูงสุด 60 วัน (ปรับอัตโนมัติจาก 365 -> 60)
+2026-07-01 20:08:59.468 | INFO     | src.data_pipeline.yfinance_loader:fetch_data:17 - Downloading GC=F [15m] from 2026-05-02 to 2026-07-01
+2026-07-01 20:09:00.850 | WARNING  | src.data_pipeline.yfinance_loader:fetch_data:11 - YFinance จำกัดข้อมูล 15m สูงสุด 60 วัน (ปรับอัตโนมัติจาก 365 -> 60)
+2026-07-01 20:09:00.850 | INFO     | src.data_pipeline.yfinance_loader:fetch_data:17 - Downloading DX-Y.NYB [15m] from 2026-05-02 to 2026-07-01
+2026-07-01 20:09:01.216 | WARNING  | src.data_pipeline.yfinance_loader:fetch_data:11 - YFinance จำกัดข้อมูล 15m สูงสุด 60 วัน (ปรับอัตโนมัติจาก 365 -> 60)
+2026-07-01 20:09:01.220 | INFO     | src.data_pipeline.yfinance_loader:fetch_data:17 - Downloading SI=F [15m] from 2026-05-02 to 2026-07-01
+2026-07-01 20:09:01.596 | INFO     | src.data_pipeline.synchronizer:merge_cross_assets:11 - เริ่มกระบวนการ Cross-Asset Synchronization...
+2026-07-01 20:09:01.603 | DEBUG    | src.data_pipeline.synchronizer:merge_cross_assets:37 - Missing Values Cleared: ก่อน 955 -> หลัง 0
+2026-07-01 20:09:01.603 | SUCCESS  | src.data_pipeline.synchronizer:merge_cross_assets:38 - Final Synchronized Shape: (3740, 15)
+2026-07-01 20:09:01.603 | INFO     | src.data_pipeline.feature_engineer:generate_features:13 - เริ่มสร้าง Technical & Cross-Asset Features...
+2026-07-01 20:09:01.738 | INFO     | src.data_pipeline.feature_engineer:generate_target:81 - สร้าง Target: วิ่งเกิน 0.5 ATR ภายใน 3 แท่งถัดไป
+2026-07-01 20:09:01.743 | DEBUG    | src.data_pipeline.feature_engineer:generate_target:103 - Drop NaN (ช่วงก่อตัว Indicator & ท้ายตาราง): 3740 -> 3541 rows
+2026-07-01 20:09:01.805 | SUCCESS  | __main__:main:51 - Phase 3 เสร็จสมบูรณ์! Dataset Shape: (3541, 42)
+2026-07-01 20:09:01.805 | SUCCESS  | __main__:main:52 - จำนวน Feature ทั้งหมด: 40 Features
+2026-07-01 20:09:01.853 | INFO     | __main__:main:70 - เตรียมข้อมูล X (Features) และ y (Target)...
+2026-07-01 20:09:01.853 | INFO     | __main__:main:83 - จำนวน Features ทั้งหมดที่จะเข้าโมเดล: 31
+2026-07-01 20:09:01.853 | INFO     | src.ml_engine.lgb_trainer:optimize_and_train:62 - เริ่มกระบวนการ Optuna Hyperparameter Tuning (LightGBM)...
+2026-07-01 20:09:04.915 | SUCCESS  | src.ml_engine.lgb_trainer:optimize_and_train:72 - ค้นพบ Best Params: {'learning_rate': 0.02174994743138503, 'num_leaves': 12, 'max_depth': 5, 'min_child_samples': 196, 'feature_fraction': 0.8658488356457905, 'bagging_fraction': 0.7027524090818289, 'reg_alpha': 2.480423427955367, 'reg_lambda': 0.3289273631340062, 'objective': 'binary', 'verbosity': -1}
+2026-07-01 20:09:04.916 | INFO     | src.ml_engine.lgb_trainer:optimize_and_train:75 - กำลัง Train โมเดลรอบสุดท้ายด้วย Best Params...
+2026-07-01 20:09:05.080 | INFO     | __main__:main:107 - นำ Best Params มาทดสอบเสมือนจริงด้วย Walk-Forward...
+2026-07-01 20:09:05.080 | INFO     | src.backtester.validator:evaluate:15 - เริ่มทำ Walk-Forward Validation จำนวน 5 Folds...
+2026-07-01 20:14:39.394 | INFO     | __main__:main:15 - ==================================================
+2026-07-01 20:14:39.394 | INFO     | __main__:main:16 - 🚀 Starting AlphaQuant-Gold [Phase 1-3]
+2026-07-01 20:14:39.394 | INFO     | __main__:main:17 - ==================================================
+2026-07-01 20:14:39.394 | WARNING  | src.data_pipeline.yfinance_loader:fetch_data:11 - YFinance จำกัดข้อมูล 15m สูงสุด 60 วัน (ปรับอัตโนมัติจาก 365 -> 60)
+2026-07-01 20:14:39.400 | INFO     | src.data_pipeline.yfinance_loader:fetch_data:17 - Downloading GC=F [15m] from 2026-05-02 to 2026-07-01
+2026-07-01 20:14:40.276 | WARNING  | src.data_pipeline.yfinance_loader:fetch_data:11 - YFinance จำกัดข้อมูล 15m สูงสุด 60 วัน (ปรับอัตโนมัติจาก 365 -> 60)
+2026-07-01 20:14:40.276 | INFO     | src.data_pipeline.yfinance_loader:fetch_data:17 - Downloading DX-Y.NYB [15m] from 2026-05-02 to 2026-07-01
+2026-07-01 20:14:40.648 | WARNING  | src.data_pipeline.yfinance_loader:fetch_data:11 - YFinance จำกัดข้อมูล 15m สูงสุด 60 วัน (ปรับอัตโนมัติจาก 365 -> 60)
+2026-07-01 20:14:40.653 | INFO     | src.data_pipeline.yfinance_loader:fetch_data:17 - Downloading SI=F [15m] from 2026-05-02 to 2026-07-01
+2026-07-01 20:14:41.264 | INFO     | src.data_pipeline.synchronizer:merge_cross_assets:11 - เริ่มกระบวนการ Cross-Asset Synchronization...
+2026-07-01 20:14:41.276 | DEBUG    | src.data_pipeline.synchronizer:merge_cross_assets:37 - Missing Values Cleared: ก่อน 955 -> หลัง 0
+2026-07-01 20:14:41.276 | SUCCESS  | src.data_pipeline.synchronizer:merge_cross_assets:38 - Final Synchronized Shape: (3741, 15)
+2026-07-01 20:14:41.278 | INFO     | src.data_pipeline.feature_engineer:generate_features:13 - เริ่มสร้าง Technical & Cross-Asset Features...
+2026-07-01 20:14:41.458 | INFO     | src.data_pipeline.feature_engineer:generate_target:81 - สร้าง Target: วิ่งเกิน 0.5 ATR ภายใน 3 แท่งถัดไป
+2026-07-01 20:14:41.465 | DEBUG    | src.data_pipeline.feature_engineer:generate_target:103 - Drop NaN (ช่วงก่อตัว Indicator & ท้ายตาราง): 3741 -> 3542 rows
+2026-07-01 20:14:41.536 | SUCCESS  | __main__:main:51 - Phase 3 เสร็จสมบูรณ์! Dataset Shape: (3542, 42)
+2026-07-01 20:14:41.540 | SUCCESS  | __main__:main:52 - จำนวน Feature ทั้งหมด: 40 Features
+2026-07-01 20:14:41.601 | INFO     | __main__:main:70 - เตรียมข้อมูล X (Features) และ y (Target)...
+2026-07-01 20:14:41.604 | INFO     | __main__:main:83 - จำนวน Features ทั้งหมดที่จะเข้าโมเดล: 31
+2026-07-01 20:14:41.604 | INFO     | src.ml_engine.lgb_trainer:optimize_and_train:62 - เริ่มกระบวนการ Optuna Hyperparameter Tuning (LightGBM)...
+2026-07-01 20:14:46.930 | SUCCESS  | src.ml_engine.lgb_trainer:optimize_and_train:72 - ค้นพบ Best Params: {'learning_rate': 0.06650425514339495, 'num_leaves': 24, 'max_depth': 3, 'min_child_samples': 50, 'feature_fraction': 0.5200069197813146, 'bagging_fraction': 0.6073662911553174, 'reg_alpha': 3.802371819150186, 'reg_lambda': 0.3381241854622137, 'objective': 'binary', 'verbosity': -1}
+2026-07-01 20:14:46.930 | INFO     | src.ml_engine.lgb_trainer:optimize_and_train:75 - กำลัง Train โมเดลรอบสุดท้ายด้วย Best Params...
+2026-07-01 20:14:47.081 | INFO     | __main__:main:107 - นำ Best Params มาทดสอบเสมือนจริงด้วย Walk-Forward...
+2026-07-01 20:14:47.081 | INFO     | src.backtester.validator:evaluate:15 - เริ่มทำ Walk-Forward Validation จำนวน 5 Folds...
+2026-07-01 20:14:47.173 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 1/5 | Train: 587 bars, Test: 590 bars | Precision: 57.63%
+2026-07-01 20:14:47.258 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 2/5 | Train: 1177 bars, Test: 590 bars | Precision: 62.40%
+2026-07-01 20:14:47.366 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 3/5 | Train: 1767 bars, Test: 590 bars | Precision: 58.98%
+2026-07-01 20:14:47.463 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 4/5 | Train: 2357 bars, Test: 590 bars | Precision: 52.25%
+2026-07-01 20:14:47.568 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 5/5 | Train: 2947 bars, Test: 590 bars | Precision: 59.64%
+2026-07-01 20:14:47.568 | SUCCESS  | src.backtester.validator:evaluate:61 - ✅ Walk-Forward Validation เสร็จสมบูรณ์ | Average Precision: 58.18%
+2026-07-01 20:14:47.665 | SUCCESS  | __main__:main:117 - บันทึกข้อมูลเตรียมทำ Backtest เรียบร้อยที่: data/processed/backtest_dataset.parquet
+2026-07-01 20:14:47.671 | INFO     | __main__:main:118 - ==================================================
+2026-07-01 20:14:47.671 | INFO     | __main__:main:119 - 🎯 สรุปความพร้อมของ AI: มีความแม่นยำในการเข้าทำกำไรที่ 58.18%
+2026-07-01 20:14:47.672 | INFO     | __main__:main:120 - ==================================================
