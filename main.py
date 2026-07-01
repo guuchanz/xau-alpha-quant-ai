@@ -1,3 +1,4 @@
+from src.backtester.vector_backtest import VectorBacktester
 from src.utils.config_loader import Config
 from src.utils.logger import setup_logger
 from src.data_pipeline.yfinance_loader import YFinanceLoader
@@ -5,6 +6,8 @@ from src.data_pipeline.synchronizer import DataSynchronizer
 from src.data_pipeline.feature_engineer import FeatureEngineer
 from src.ml_engine.lgb_trainer import LightGBMTrainer
 from src.backtester.validator import WalkForwardValidator
+from src.backtester.vector_backtest import VectorBacktester
+from src.backtester.optimizer import StrategyOptimizer
 import pandas as pd
 import os
 
@@ -13,10 +16,13 @@ def main():
     logger = setup_logger(mode=cfg["project"]["mode"])
     
     logger.info("==================================================")
-    logger.info(f"🚀 Starting {cfg['project']['name']} [Phase 1-3]")
+    logger.info(f"🚀 Starting {cfg['project']['name']} [Phase 1: Project Architecture + Environment + Configuration]")
     logger.info("==================================================")
 
     # ---------------- Phase 2: Data Loader ----------------
+    logger.info("==================================================")
+    logger.info(f"🚀 Starting {cfg['project']['name']} [Phase 2: Data Loader]")
+    logger.info("==================================================")
     loader = YFinanceLoader()
     base_tf = cfg["data"]["timeframes"][-1] 
     
@@ -30,6 +36,9 @@ def main():
     synced_data = DataSynchronizer.merge_cross_assets(target_df, aux_dfs)
 
     # ---------------- Phase 3: Feature Engineering ----------------
+    logger.info("==================================================")
+    logger.info(f"🚀 Starting {cfg['project']['name']} [Phase 3: Feature Engineering]")
+    logger.info("==================================================")
     # ดึงค่าพารามิเตอร์จาก Config
     fe = FeatureEngineer(
         atr_period=cfg["risk"]["atr_period"],
@@ -53,9 +62,9 @@ def main():
     
     
     # ดูความสมดุลของ Target (Class Imbalance Check)
-    # buy_signals = final_data['target_long'].sum()
-    # sell_signals = final_data['target_short'].sum()
-    # logger.info(f"โอกาสเกิด Long: {buy_signals} ครั้ง, Short: {sell_signals} ครั้ง จากทั้งหมด {len(final_data)} แท่ง")
+    buy_signals = final_data['target_long'].sum()
+    sell_signals = final_data['target_short'].sum()
+    logger.info(f"โอกาสเกิด Long: {buy_signals} ครั้ง, Short: {sell_signals} ครั้ง จากทั้งหมด {len(final_data)} แท่ง")
 
     # สมมติว่าตอนนี้เรามี final_data จาก Phase 3 แล้ว
     # โหลดไฟล์ที่ทำไว้จาก Phase 3 กลับมาเพื่อความรวดเร็ว
@@ -67,6 +76,9 @@ def main():
     final_data = pd.read_parquet(dataset_path)
 
     # ---------------- Phase 4: Machine Learning Engine ----------------
+    logger.info("==================================================")
+    logger.info(f"🚀 Starting {cfg['project']['name']} [Phase 4: Machine Learning Engine]")
+    logger.info("==================================================")
     logger.info("เตรียมข้อมูล X (Features) และ y (Target)...")
     
     # คัดเฉพาะคอลัมน์ที่เป็น Feature (ตัด OHLCV ดิบๆ และ Target ทิ้ง)
@@ -83,25 +95,32 @@ def main():
     logger.info(f"จำนวน Features ทั้งหมดที่จะเข้าโมเดล: {X.shape[1]}")
 
     # 4.1 เริ่มกระบวนการ Train (ใช้ Optuna หาพารามิเตอร์ 20 รอบ เพื่อประหยัดเวลาทดสอบ)
-    lgb_long_trainer = LightGBMTrainer(n_trials=10) # ลดเหลือ 10 รอบเพื่อให้รันเร็วขึ้น
+    lgb_long_trainer = LightGBMTrainer(n_trials=20) # ลดเหลือ 10 รอบเพื่อให้รันเร็วขึ้น
     lgb_long_trainer.optimize_and_train(X, y_long)
-    best_params = lgb_long_trainer.best_params
-    # 4.2 ตรวจสอบความสำคัญของ Features (Feature Importance)
-    # importance = pd.DataFrame({
-    #     'Feature': X.columns,
-    #     'Importance': model_long.feature_importance(importance_type='gain')
-    # }).sort_values(by='Importance', ascending=False)
     
-    # logger.info("\n--- 🌟 Top 5 Feature Importance 🌟 ---")
-    # print(importance.head(5).to_string(index=False))
+    best_params = lgb_long_trainer.best_params
+
+    # 4.2 ตรวจสอบความสำคัญของ Features (Feature Importance)
+    model_long = lgb_long_trainer.optimize_and_train(X, y_long)
+    importance = pd.DataFrame({
+        'Feature': X.columns,
+        'Importance': model_long.feature_importance(importance_type='gain')
+    }).sort_values(by='Importance', ascending=False)
+    
+    logger.info("\n--- 🌟 Top 5 Feature Importance 🌟 ---")
+    print(importance.head(5).to_string(index=False))
     
     # 4.3 เซฟโมเดลเก็บไว้
-    # import joblib
-    # os.makedirs('models', exist_ok=True)
-    # joblib.dump(model_long, 'models/lgb_long_model.pkl')
-    # logger.success("บันทึกโมเดลสำเร็จที่: models/lgb_long_model.pkl")
+    import joblib
+    os.makedirs('models', exist_ok=True)
+    joblib.dump(model_long, 'models/lgb_long_model.pkl')
+    logger.success("บันทึกโมเดลสำเร็จที่: models/lgb_long_model.pkl")
 
 # ---------------- Phase 5: Walk-Forward Validation ----------------
+    logger.info("==================================================")
+    logger.info(f"🚀 Starting {cfg['project']['name']} [Phase 5: Walk-Forward Validation]")
+    logger.info("==================================================")
+
     validator = WalkForwardValidator(n_splits=5)
     
     logger.info("นำ Best Params มาทดสอบเสมือนจริงด้วย Walk-Forward...")
@@ -118,6 +137,71 @@ def main():
     logger.info("==================================================")
     logger.info(f"🎯 สรุปความพร้อมของ AI: มีความแม่นยำในการเข้าทำกำไรที่ {avg_precision:.2%}")
     logger.info("==================================================")
+
+    logger.info("==================================================")
+    logger.info(f"🚀 Starting {cfg['project']['name']} [Phase 6: Backtesting]")
+    logger.info("==================================================")
+
+    # โหลดข้อมูลที่มีค่า Probability จาก Phase 5
+    dataset_path = "data/processed/backtest_dataset.parquet"
+    if not os.path.exists(dataset_path):
+        logger.error("ไม่พบ Dataset! กรุณารัน Phase 1-5 ให้ผ่านก่อน")
+        return
+        
+    final_data = pd.read_parquet(dataset_path)
+
+    # ตรวจสอบว่ามีคอลัมน์เป้าหมายและ probability ครบไหม
+    if 'target_close' not in final_data.columns or 'long_signal_prob' not in final_data.columns:
+        logger.error("ข้อมูลไม่ครบถ้วน ขาด target_close หรือ long_signal_prob")
+        return
+
+    # ---------------- Phase 6: Vectorized Backtesting ----------------
+    # ตั้งค่า Entry/Exit (ปรับตามความมั่นใจของโมเดล)
+    # เนื่องจากความแม่นยำเราอยู่ที่ ~58% การเข้าที่ 0.55 ถือว่าปลอดภัยระดับนึง
+    backtester = VectorBacktester(
+        init_cash=10000.0, 
+        fees=0.0002, # เผื่อค่า Spread และ Slippage ไว้ที่ 0.02%
+        entry_threshold=0.55, 
+        exit_threshold=0.48 
+    )
+    
+    portfolio = backtester.run_backtest(final_data)
+
+    logger.info("==================================================")
+    logger.info(f"🚀 Starting {cfg['project']['name']} [Phase 7: Optimization]")
+    logger.info("==================================================")
+
+    dataset_path = "data/processed/backtest_dataset.parquet"
+    if not os.path.exists(dataset_path):
+        logger.error("ไม่พบ Dataset! กรุณารัน Phase 1-5 ให้ผ่านก่อน")
+        return
+        
+    final_data = pd.read_parquet(dataset_path)
+
+    # ---------------- Phase 7: Strategy Optimization ----------------
+    optimizer = StrategyOptimizer(
+        init_cash=10000.0, 
+        fees=0.0002 
+    )
+    
+    # รันทดสอบ 27 รูปแบบ
+    results_df, best_portfolio = optimizer.run_sweep(final_data)
+    
+    logger.info("\n🏆 --- Top 5 Parameters ที่ทำกำไรสูงสุด --- 🏆")
+    print(results_df.head(5).to_string(index=False))
+    
+    # แสดงสถิติเชิงลึกของอันดับ 1
+    logger.info("\n📊 --- สถิติของกลยุทธ์ที่ดีที่สุด --- 📊")
+    stats = best_portfolio.stats()
+    for metric in ['Start Value', 'End Value', 'Max Drawdown [%]', 'Total Trades']:
+        if metric in stats:
+            print(f"{metric+':':<20} {stats[metric]}")
+    
+    # บันทึกกราฟอันดับ 1 ไว้ดู
+    os.makedirs('reports', exist_ok=True)
+    plot_path = "reports/best_optimized_backtest.html"
+    best_portfolio.plot().write_html(plot_path)
+    logger.success(f"บันทึกกราฟกลยุทธ์ที่ดีที่สุดเรียบร้อยที่: {plot_path}")
 
 if __name__ == "__main__":
     main()
