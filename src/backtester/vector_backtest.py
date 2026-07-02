@@ -4,53 +4,62 @@ from loguru import logger
 import os
 
 class VectorBacktester:
-    def __init__(self, init_cash: float = 10000.0, fees: float = 0.0001, entry_threshold: float = 0.65, exit_threshold: float = 0.5):
+    def __init__(self, init_cash: float = 10000.0, fees: float = 0.0002, 
+                 entry_threshold: float = 0.66, exit_threshold: float = 0.50,
+                 sl_pct: float = 0.03, tp_pct: float = 0.01):
+        """
+        เพิ่มระบบควบคุมความเสี่ยง: sl_pct (Stop Loss) และ tp_pct (Take Profit)
+        """
         self.init_cash = init_cash
-        self.fees = fees # ค่าธรรมเนียม Broker (เช่น 0.01%)
+        self.fees = fees
         self.entry_threshold = entry_threshold
         self.exit_threshold = exit_threshold
+        self.sl_pct = sl_pct  # เช่น 0.03 = 3%
+        self.tp_pct = tp_pct  # เช่น 0.01 = 1%
 
-    def run_backtest(self, df: pd.DataFrame, price_col: str = 'target_close', prob_col: str = 'long_signal_prob'):
-        logger.info(f"เริ่มจำลองการเทรดด้วยทุนเริ่มต้น ${self.init_cash:,.2f}...")
+    def run_bidirectional_backtest(self, df: pd.DataFrame):
+        logger.info(f"🎬 เริ่มจำลองการเทรดสองฝั่ง + ระบบ Risk Management (SL: {self.sl_pct*100}%, TP: {self.tp_pct*100}%)...")
         
-        # 1. สร้างสัญญาณ Entry และ Exit จาก Probability
-        entries = df[prob_col] >= self.entry_threshold
-        exits = df[prob_col] < self.exit_threshold
+        if 'long_signal_prob' not in df.columns or 'short_signal_prob' not in df.columns:
+            raise KeyError("ข้อมูลไม่สมบูรณ์! ไม่พบคอลัมน์ 'long_signal_prob' หรือ 'short_signal_prob'")
+            
+        # สัญญาณฝั่ง Long 
+        entries = df['long_signal_prob'] >= self.entry_threshold
+        exits = df['long_signal_prob'] < self.exit_threshold
         
-        # 2. ป้อนข้อมูลเข้าสู่ Portfolio จำลอง
-        # ใช้ direction='longonly' เพราะโมเดลเราเทรนมาเพื่อฝั่งขาขึ้นอย่างเดียวในตอนนี้
+        # สัญญาณฝั่ง Short 
+        short_entries = df['short_signal_prob'] >= self.entry_threshold
+        short_exits = df['short_signal_prob'] < self.exit_threshold
+        
+        # ประมวลผลโดยเพิ่มเงื่อนไข sl_stop และ tp_stop เข้าไปควบคุมพอร์ต
         portfolio = vbt.Portfolio.from_signals(
-            close=df[price_col],
+            close=df['target_close'],
             entries=entries,
             exits=exits,
+            short_entries=short_entries, 
+            short_exits=short_exits,     
             fees=self.fees,
             init_cash=self.init_cash,
-            freq='15T', # Timeframe 15 นาที
-            direction='longonly' 
+            freq='15T',
+            direction='both',
+            sl_stop=self.sl_pct,  # <--- เปิดใช้งานระบบหยุดขาดทุนอัตโนมัติ
+            tp_stop=self.tp_pct   # <--- เปิดใช้งานระบบล็อกกำไรอัตโนมัติ
         )
         
-        # 3. สรุปผลสถิติที่ Quant สนใจ
         stats = portfolio.stats()
         
         logger.info("\n==================================================")
-        logger.info("📊 สรุปผลประกอบการ (Backtest Statistics) 📊")
+        logger.info("🛡️ ผลประกอบการหลังติดตั้งระบบควบคุมความเสี่ยง (SL/TP) 🛡️")
         logger.info("==================================================")
         
-        # ดึงเฉพาะค่าที่สำคัญมาแสดงผล
-        important_metrics = [
-            'Start Value', 'End Value', 'Total Return [%]', 
-            'Max Drawdown [%]', 'Win Rate [%]', 'Total Trades', 
-            'Profit Factor', 'Sharpe Ratio'
-        ]
-        
-        for metric in important_metrics:
+        metrics_to_show = ['Start Value', 'End Value', 'Total Return [%]', 'Max Drawdown [%]', 'Total Trades', 'Win Rate [%]']
+        for metric in metrics_to_show:
             if metric in stats:
                 print(f"{metric+':':<20} {stats[metric]}")
-                
-        # 4. บันทึกกราฟแสดงผล
+            
         os.makedirs('reports', exist_ok=True)
-        plot_path = "reports/backtest_result.html"
-        portfolio.plot().write_html(plot_path)
-        logger.success(f"บันทึกกราฟ Interactive แบ็คเทสต์เรียบร้อยที่: {plot_path}")
+        report_path = "reports/bidirectional_backtest_rm.html"
+        portfolio.plot().write_html(report_path)
+        logger.success(f"บันทึกกราฟกลยุทธ์ Risk Management เรียบร้อยที่: report_path")
         
         return portfolio

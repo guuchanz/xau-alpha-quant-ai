@@ -15,13 +15,13 @@ class StrategyOptimizer:
         
         # 1. กำหนดช่วงพารามิเตอร์ที่จะนำมาผสมกัน
         # AI ต้องมั่นใจกี่ % ถึงจะยอมเข้าซื้อ?
-        entry_thresholds = [0.65, 0.70, 0.75] 
+        entry_thresholds = [0.66, 0.70, 0.75] 
         
         # ยอมขาดทุนได้กี่ % ต่อไม้? (0.5%, 1%, 1.5%)
-        sl_stops = [0.005, 0.010, 0.030] 
+        sl_stops = [0.01, 0.02, 0.03] 
         
         # เอากำไรที่กี่ % ? (1%, 2%, 3%)
-        tp_stops = [0.01, 0.02, 0.03] 
+        tp_stops = [0.03, 0.05, 0.07] 
         
         # นำมาสับเปลี่ยนคู่กัน (3 x 3 x 3 = 27 จักรวาลคู่ขนาน)
         combinations = list(itertools.product(entry_thresholds, sl_stops, tp_stops))
