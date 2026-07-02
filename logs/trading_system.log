@@ -13668,3 +13668,242 @@
 ==================================================
 2026-07-02 22:23:13.616 | INFO     | __main__:main:297 - 🛡️ ผลประกอบการเวอร์ชัน Positive Expectancy Engine 🛡️
 2026-07-02 22:23:13.616 | INFO     | __main__:main:298 - ==================================================
+2026-07-02 23:04:11.925 | INFO     | __main__:main:19 - ==================================================
+2026-07-02 23:04:11.925 | INFO     | __main__:main:20 - 🚀 Starting AlphaQuant-Gold [Phase 1: Project Architecture + Environment + Configuration]
+2026-07-02 23:04:11.931 | INFO     | __main__:main:21 - ==================================================
+2026-07-02 23:04:11.931 | INFO     | __main__:main:24 - ==================================================
+2026-07-02 23:04:11.931 | INFO     | __main__:main:25 - 🚀 Starting AlphaQuant-Gold [Phase 2: Data Loader]
+2026-07-02 23:04:11.932 | INFO     | __main__:main:26 - ==================================================
+2026-07-02 23:04:11.932 | WARNING  | src.data_pipeline.yfinance_loader:fetch_data:11 - YFinance จำกัดข้อมูล 15m สูงสุด 60 วัน (ปรับอัตโนมัติจาก 365 -> 60)
+2026-07-02 23:04:11.932 | INFO     | src.data_pipeline.yfinance_loader:fetch_data:17 - Downloading GC=F [15m] from 2026-05-03 to 2026-07-02
+2026-07-02 23:04:12.712 | WARNING  | src.data_pipeline.yfinance_loader:fetch_data:11 - YFinance จำกัดข้อมูล 15m สูงสุด 60 วัน (ปรับอัตโนมัติจาก 365 -> 60)
+2026-07-02 23:04:12.712 | INFO     | src.data_pipeline.yfinance_loader:fetch_data:17 - Downloading DX-Y.NYB [15m] from 2026-05-03 to 2026-07-02
+2026-07-02 23:04:13.042 | WARNING  | src.data_pipeline.yfinance_loader:fetch_data:11 - YFinance จำกัดข้อมูล 15m สูงสุด 60 วัน (ปรับอัตโนมัติจาก 365 -> 60)
+2026-07-02 23:04:13.042 | INFO     | src.data_pipeline.yfinance_loader:fetch_data:17 - Downloading SI=F [15m] from 2026-05-03 to 2026-07-02
+2026-07-02 23:04:13.388 | INFO     | src.data_pipeline.synchronizer:merge_cross_assets:11 - เริ่มกระบวนการ Cross-Asset Synchronization...
+2026-07-02 23:04:13.400 | DEBUG    | src.data_pipeline.synchronizer:merge_cross_assets:37 - Missing Values Cleared: ก่อน 985 -> หลัง 0
+2026-07-02 23:04:13.400 | SUCCESS  | src.data_pipeline.synchronizer:merge_cross_assets:38 - Final Synchronized Shape: (3824, 15)
+2026-07-02 23:04:13.401 | INFO     | __main__:main:40 - ==================================================
+2026-07-02 23:04:13.402 | INFO     | __main__:main:41 - 🚀 Starting AlphaQuant-Gold [Phase 3: Feature Engineering]
+2026-07-02 23:04:13.403 | INFO     | __main__:main:42 - ==================================================
+2026-07-02 23:04:13.406 | INFO     | src.data_pipeline.feature_engineer:generate_features:13 - เริ่มสร้าง Technical & Cross-Asset Features...
+2026-07-02 23:04:13.572 | INFO     | src.data_pipeline.feature_engineer:generate_target:81 - สร้าง Target: วิ่งเกิน 0.5 ATR ภายใน 3 แท่งถัดไป
+2026-07-02 23:04:13.579 | DEBUG    | src.data_pipeline.feature_engineer:generate_target:103 - Drop NaN (ช่วงก่อตัว Indicator & ท้ายตาราง): 3824 -> 3625 rows
+2026-07-02 23:04:13.780 | SUCCESS  | __main__:main:61 - Phase 3 เสร็จสมบูรณ์! Dataset Shape: (3625, 42)
+2026-07-02 23:04:13.780 | SUCCESS  | __main__:main:62 - จำนวน Feature ทั้งหมด: 40 Features
+2026-07-02 23:04:13.780 | INFO     | __main__:main:68 - โอกาสเกิด Long: 2104 ครั้ง, Short: 2324 ครั้ง จากทั้งหมด 3625 แท่ง
+2026-07-02 23:04:13.836 | INFO     | __main__:main:80 - ==================================================
+2026-07-02 23:04:13.836 | INFO     | __main__:main:81 - 🚀 Starting AlphaQuant-Gold [Phase 4: Machine Learning Engine]
+2026-07-02 23:04:13.836 | INFO     | __main__:main:82 - ==================================================
+2026-07-02 23:04:13.837 | INFO     | __main__:main:83 - เตรียมข้อมูล X (Features) และ y (Target)...
+2026-07-02 23:04:13.838 | INFO     | __main__:main:96 - จำนวน Features ทั้งหมดที่จะเข้าโมเดล: 31
+2026-07-02 23:04:13.839 | INFO     | src.ml_engine.lgb_trainer:optimize_and_train:62 - เริ่มกระบวนการ Optuna Hyperparameter Tuning (LightGBM)...
+2026-07-02 23:04:27.523 | SUCCESS  | src.ml_engine.lgb_trainer:optimize_and_train:72 - ค้นพบ Best Params: {'learning_rate': 0.0778332654057202, 'num_leaves': 26, 'max_depth': 4, 'min_child_samples': 186, 'feature_fraction': 0.7384429481276711, 'bagging_fraction': 0.6005177373888285, 'reg_alpha': 0.9171382200509691, 'reg_lambda': 1.9231237231499574, 'objective': 'binary', 'verbosity': -1}
+2026-07-02 23:04:27.524 | INFO     | src.ml_engine.lgb_trainer:optimize_and_train:75 - กำลัง Train โมเดลรอบสุดท้ายด้วย Best Params...
+2026-07-02 23:04:27.735 | INFO     | src.ml_engine.lgb_trainer:optimize_and_train:62 - เริ่มกระบวนการ Optuna Hyperparameter Tuning (LightGBM)...
+2026-07-02 23:04:34.820 | SUCCESS  | src.ml_engine.lgb_trainer:optimize_and_train:72 - ค้นพบ Best Params: {'learning_rate': 0.09921260853837625, 'num_leaves': 18, 'max_depth': 3, 'min_child_samples': 170, 'feature_fraction': 0.6914529623050568, 'bagging_fraction': 0.5277545464350839, 'reg_alpha': 1.6100530172079661, 'reg_lambda': 0.436834912249331, 'objective': 'binary', 'verbosity': -1}
+2026-07-02 23:04:34.820 | INFO     | src.ml_engine.lgb_trainer:optimize_and_train:75 - กำลัง Train โมเดลรอบสุดท้ายด้วย Best Params...
+2026-07-02 23:04:34.963 | INFO     | __main__:main:111 - 
+--- 🌟 Top 5 Feature Importance 🌟 ---
+2026-07-02 23:04:34.986 | SUCCESS  | __main__:main:118 - บันทึกโมเดลสำเร็จที่: models/lgb_long_model.pkl
+2026-07-02 23:04:34.989 | INFO     | __main__:main:121 - ==================================================
+2026-07-02 23:04:34.989 | INFO     | __main__:main:122 - 🚀 Starting AlphaQuant-Gold [Phase 5: Walk-Forward Validation]
+2026-07-02 23:04:34.989 | INFO     | __main__:main:123 - ==================================================
+2026-07-02 23:04:34.989 | INFO     | __main__:main:127 - นำ Best Params มาทดสอบเสมือนจริงด้วย Walk-Forward...
+2026-07-02 23:04:34.989 | INFO     | src.backtester.validator:evaluate:15 - เริ่มทำ Walk-Forward Validation จำนวน 50 Folds...
+2026-07-02 23:04:35.015 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 1/50 | Train: 70 bars, Test: 71 bars | Precision: 57.75%
+2026-07-02 23:04:35.034 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 2/50 | Train: 141 bars, Test: 71 bars | Precision: 66.20%
+2026-07-02 23:04:35.058 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 3/50 | Train: 212 bars, Test: 71 bars | Precision: 53.52%
+2026-07-02 23:04:35.079 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 4/50 | Train: 283 bars, Test: 71 bars | Precision: 69.01%
+2026-07-02 23:04:35.098 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 5/50 | Train: 354 bars, Test: 71 bars | Precision: 70.42%
+2026-07-02 23:04:35.134 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 6/50 | Train: 425 bars, Test: 71 bars | Precision: 69.01%
+2026-07-02 23:04:35.169 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 7/50 | Train: 496 bars, Test: 71 bars | Precision: 64.79%
+2026-07-02 23:04:35.210 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 8/50 | Train: 567 bars, Test: 71 bars | Precision: 45.07%
+2026-07-02 23:04:35.251 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 9/50 | Train: 638 bars, Test: 71 bars | Precision: 50.98%
+2026-07-02 23:04:35.298 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 10/50 | Train: 709 bars, Test: 71 bars | Precision: 68.75%
+2026-07-02 23:04:35.343 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 11/50 | Train: 780 bars, Test: 71 bars | Precision: 56.45%
+2026-07-02 23:04:35.414 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 12/50 | Train: 851 bars, Test: 71 bars | Precision: 57.89%
+2026-07-02 23:04:35.470 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 13/50 | Train: 922 bars, Test: 71 bars | Precision: 68.00%
+2026-07-02 23:04:35.539 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 14/50 | Train: 993 bars, Test: 71 bars | Precision: 62.07%
+2026-07-02 23:04:35.605 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 15/50 | Train: 1064 bars, Test: 71 bars | Precision: 66.18%
+2026-07-02 23:04:35.681 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 16/50 | Train: 1135 bars, Test: 71 bars | Precision: 60.00%
+2026-07-02 23:04:35.756 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 17/50 | Train: 1206 bars, Test: 71 bars | Precision: 52.24%
+2026-07-02 23:04:35.843 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 18/50 | Train: 1277 bars, Test: 71 bars | Precision: 52.38%
+2026-07-02 23:04:35.931 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 19/50 | Train: 1348 bars, Test: 71 bars | Precision: 62.00%
+2026-07-02 23:04:36.015 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 20/50 | Train: 1419 bars, Test: 71 bars | Precision: 85.71%
+2026-07-02 23:04:36.091 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 21/50 | Train: 1490 bars, Test: 71 bars | Precision: 55.38%
+2026-07-02 23:04:36.181 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 22/50 | Train: 1561 bars, Test: 71 bars | Precision: 67.24%
+2026-07-02 23:04:36.271 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 23/50 | Train: 1632 bars, Test: 71 bars | Precision: 53.03%
+2026-07-02 23:04:36.362 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 24/50 | Train: 1703 bars, Test: 71 bars | Precision: 51.52%
+2026-07-02 23:04:36.459 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 25/50 | Train: 1774 bars, Test: 71 bars | Precision: 68.12%
+2026-07-02 23:04:36.549 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 26/50 | Train: 1845 bars, Test: 71 bars | Precision: 65.08%
+2026-07-02 23:04:36.667 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 27/50 | Train: 1916 bars, Test: 71 bars | Precision: 49.30%
+2026-07-02 23:04:36.771 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 28/50 | Train: 1987 bars, Test: 71 bars | Precision: 59.15%
+2026-07-02 23:04:36.876 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 29/50 | Train: 2058 bars, Test: 71 bars | Precision: 71.43%
+2026-07-02 23:04:36.980 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 30/50 | Train: 2129 bars, Test: 71 bars | Precision: 46.48%
+2026-07-02 23:04:37.077 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 31/50 | Train: 2200 bars, Test: 71 bars | Precision: 56.25%
+2026-07-02 23:04:37.188 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 32/50 | Train: 2271 bars, Test: 71 bars | Precision: 62.07%
+2026-07-02 23:04:37.300 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 33/50 | Train: 2342 bars, Test: 71 bars | Precision: 62.69%
+2026-07-02 23:04:37.438 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 34/50 | Train: 2413 bars, Test: 71 bars | Precision: 64.15%
+2026-07-02 23:04:37.550 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 35/50 | Train: 2484 bars, Test: 71 bars | Precision: 66.15%
+2026-07-02 23:04:37.684 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 36/50 | Train: 2555 bars, Test: 71 bars | Precision: 53.52%
+2026-07-02 23:04:37.807 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 37/50 | Train: 2626 bars, Test: 71 bars | Precision: 62.30%
+2026-07-02 23:04:37.910 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 38/50 | Train: 2697 bars, Test: 71 bars | Precision: 52.11%
+2026-07-02 23:04:38.007 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 39/50 | Train: 2768 bars, Test: 71 bars | Precision: 40.91%
+2026-07-02 23:04:38.098 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 40/50 | Train: 2839 bars, Test: 71 bars | Precision: 9.26%
+2026-07-02 23:04:38.207 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 41/50 | Train: 2910 bars, Test: 71 bars | Precision: 66.67%
+2026-07-02 23:04:38.313 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 42/50 | Train: 2981 bars, Test: 71 bars | Precision: 52.94%
+2026-07-02 23:04:38.423 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 43/50 | Train: 3052 bars, Test: 71 bars | Precision: 52.78%
+2026-07-02 23:04:38.529 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 44/50 | Train: 3123 bars, Test: 71 bars | Precision: 88.89%
+2026-07-02 23:04:38.657 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 45/50 | Train: 3194 bars, Test: 71 bars | Precision: 69.44%
+2026-07-02 23:04:38.767 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 46/50 | Train: 3265 bars, Test: 71 bars | Precision: 54.10%
+2026-07-02 23:04:38.876 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 47/50 | Train: 3336 bars, Test: 71 bars | Precision: 57.38%
+2026-07-02 23:04:38.996 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 48/50 | Train: 3407 bars, Test: 71 bars | Precision: 54.84%
+2026-07-02 23:04:39.109 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 49/50 | Train: 3478 bars, Test: 71 bars | Precision: 80.43%
+2026-07-02 23:04:39.246 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 50/50 | Train: 3549 bars, Test: 71 bars | Precision: 82.35%
+2026-07-02 23:04:39.246 | SUCCESS  | src.backtester.validator:evaluate:61 - ✅ Walk-Forward Validation เสร็จสมบูรณ์ | Average Precision: 60.29%
+2026-07-02 23:04:39.293 | SUCCESS  | __main__:main:137 - บันทึกข้อมูลเตรียมทำ Backtest เรียบร้อยที่: data/processed/backtest_dataset.parquet
+2026-07-02 23:04:39.293 | INFO     | __main__:main:138 - ==================================================
+2026-07-02 23:04:39.293 | INFO     | __main__:main:139 - 🎯 สรุปความพร้อมของ AI: มีความแม่นยำในการเข้าทำกำไรที่ 60.29%
+2026-07-02 23:04:39.293 | INFO     | __main__:main:140 - ==================================================
+2026-07-02 23:04:39.293 | INFO     | __main__:main:142 - ==================================================
+2026-07-02 23:04:39.293 | INFO     | __main__:main:143 - 🚀 Starting AlphaQuant-Gold [Phase 6: Backtesting]
+2026-07-02 23:04:39.293 | INFO     | __main__:main:144 - ==================================================
+2026-07-02 23:04:39.331 | INFO     | src.backtester.vector_backtest:run_bidirectional_backtest:21 - 🎬 เริ่มจำลองการเทรดสองฝั่ง + ระบบ Risk Management (SL: 3.0%, TP: 1.0%)...
+2026-07-02 23:04:55.038 | INFO     | src.backtester.vector_backtest:run_bidirectional_backtest:51 - 
+==================================================
+2026-07-02 23:04:55.038 | INFO     | src.backtester.vector_backtest:run_bidirectional_backtest:52 - 🛡️ ผลประกอบการหลังติดตั้งระบบควบคุมความเสี่ยง (SL/TP) 🛡️
+2026-07-02 23:04:55.038 | INFO     | src.backtester.vector_backtest:run_bidirectional_backtest:53 - ==================================================
+2026-07-02 23:04:56.515 | SUCCESS  | src.backtester.vector_backtest:run_bidirectional_backtest:63 - บันทึกกราฟกลยุทธ์ Risk Management เรียบร้อยที่: report_path
+2026-07-02 23:04:56.515 | INFO     | __main__:main:176 - ==================================================
+2026-07-02 23:04:56.515 | INFO     | __main__:main:177 - 🚀 Starting AlphaQuant-Gold [Phase 7: Optimization]
+2026-07-02 23:04:56.515 | INFO     | __main__:main:178 - ==================================================
+2026-07-02 23:04:56.536 | INFO     | src.backtester.optimizer:run_sweep:14 - เริ่มกระบวนการ Grid Search Optimization...
+2026-07-02 23:04:56.539 | INFO     | src.backtester.optimizer:run_sweep:28 - กำลังจำลองการเทรดทั้งหมด 27 รูปแบบ...
+2026-07-02 23:05:06.566 | SUCCESS  | src.backtester.optimizer:run_sweep:74 - 🎯 พบ Best Parameters: Entry > 0.75, SL = 1.0%, TP = 7.000000000000001%
+2026-07-02 23:05:06.566 | INFO     | __main__:main:196 - 
+🏆 --- Top 5 Parameters ที่ทำกำไรสูงสุด --- 🏆
+2026-07-02 23:05:06.575 | INFO     | __main__:main:200 - 
+📊 --- สถิติของกลยุทธ์ที่ดีที่สุด --- 📊
+2026-07-02 23:05:09.891 | SUCCESS  | __main__:main:210 - บันทึกกราฟกลยุทธ์ที่ดีที่สุดเรียบร้อยที่: reports/best_optimized_backtest.html
+2026-07-02 23:05:09.898 | INFO     | __main__:main:212 - ==================================================
+2026-07-02 23:05:09.898 | INFO     | __main__:main:213 - 🚀 Phase 8: Unlocking Short Side (Two-Way Trading) - Continuous Pipeline
+2026-07-02 23:05:09.898 | INFO     | __main__:main:214 - ==================================================
+2026-07-02 23:05:09.912 | INFO     | __main__:main:230 - --- [🤖 ขั้นตอนที่ 1: เทรนสมองกลฝั่ง LONG] ---
+2026-07-02 23:05:09.912 | INFO     | src.ml_engine.lgb_trainer:optimize_and_train:62 - เริ่มกระบวนการ Optuna Hyperparameter Tuning (LightGBM)...
+2026-07-02 23:05:15.913 | SUCCESS  | src.ml_engine.lgb_trainer:optimize_and_train:72 - ค้นพบ Best Params: {'learning_rate': 0.08098972062411129, 'num_leaves': 12, 'max_depth': 5, 'min_child_samples': 90, 'feature_fraction': 0.6486319264906099, 'bagging_fraction': 0.5098221759042074, 'reg_alpha': 0.22267016978161983, 'reg_lambda': 0.6858669383416759, 'objective': 'binary', 'verbosity': -1}
+2026-07-02 23:05:15.913 | INFO     | src.ml_engine.lgb_trainer:optimize_and_train:75 - กำลัง Train โมเดลรอบสุดท้ายด้วย Best Params...
+2026-07-02 23:05:16.086 | INFO     | src.backtester.validator:evaluate:15 - เริ่มทำ Walk-Forward Validation จำนวน 50 Folds...
+2026-07-02 23:05:16.107 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 1/50 | Train: 70 bars, Test: 71 bars | Precision: 57.75%
+2026-07-02 23:05:16.124 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 2/50 | Train: 141 bars, Test: 71 bars | Precision: 66.20%
+2026-07-02 23:05:16.154 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 3/50 | Train: 212 bars, Test: 71 bars | Precision: 53.52%
+2026-07-02 23:05:16.188 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 4/50 | Train: 283 bars, Test: 71 bars | Precision: 71.05%
+2026-07-02 23:05:16.224 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 5/50 | Train: 354 bars, Test: 71 bars | Precision: 70.69%
+2026-07-02 23:05:16.271 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 6/50 | Train: 425 bars, Test: 71 bars | Precision: 70.00%
+2026-07-02 23:05:16.314 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 7/50 | Train: 496 bars, Test: 71 bars | Precision: 64.29%
+2026-07-02 23:05:16.356 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 8/50 | Train: 567 bars, Test: 71 bars | Precision: 45.71%
+2026-07-02 23:05:16.421 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 9/50 | Train: 638 bars, Test: 71 bars | Precision: 66.67%
+2026-07-02 23:05:16.483 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 10/50 | Train: 709 bars, Test: 71 bars | Precision: 90.91%
+2026-07-02 23:05:16.545 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 11/50 | Train: 780 bars, Test: 71 bars | Precision: 55.56%
+2026-07-02 23:05:16.608 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 12/50 | Train: 851 bars, Test: 71 bars | Precision: 57.41%
+2026-07-02 23:05:16.695 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 13/50 | Train: 922 bars, Test: 71 bars | Precision: 68.18%
+2026-07-02 23:05:16.766 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 14/50 | Train: 993 bars, Test: 71 bars | Precision: 58.82%
+2026-07-02 23:05:16.852 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 15/50 | Train: 1064 bars, Test: 71 bars | Precision: 65.08%
+2026-07-02 23:05:16.949 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 16/50 | Train: 1135 bars, Test: 71 bars | Precision: 61.90%
+2026-07-02 23:05:17.028 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 17/50 | Train: 1206 bars, Test: 71 bars | Precision: 50.00%
+2026-07-02 23:05:17.114 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 18/50 | Train: 1277 bars, Test: 71 bars | Precision: 47.27%
+2026-07-02 23:05:17.198 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 19/50 | Train: 1348 bars, Test: 71 bars | Precision: 60.98%
+2026-07-02 23:05:17.293 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 20/50 | Train: 1419 bars, Test: 71 bars | Precision: 83.33%
+2026-07-02 23:05:17.382 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 21/50 | Train: 1490 bars, Test: 71 bars | Precision: 56.06%
+2026-07-02 23:05:17.476 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 22/50 | Train: 1561 bars, Test: 71 bars | Precision: 65.62%
+2026-07-02 23:05:17.572 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 23/50 | Train: 1632 bars, Test: 71 bars | Precision: 54.69%
+2026-07-02 23:05:17.674 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 24/50 | Train: 1703 bars, Test: 71 bars | Precision: 51.56%
+2026-07-02 23:05:17.774 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 25/50 | Train: 1774 bars, Test: 71 bars | Precision: 68.12%
+2026-07-02 23:05:17.869 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 26/50 | Train: 1845 bars, Test: 71 bars | Precision: 62.50%
+2026-07-02 23:05:18.004 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 27/50 | Train: 1916 bars, Test: 71 bars | Precision: 49.30%
+2026-07-02 23:05:18.133 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 28/50 | Train: 1987 bars, Test: 71 bars | Precision: 59.15%
+2026-07-02 23:05:18.265 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 29/50 | Train: 2058 bars, Test: 71 bars | Precision: 74.24%
+2026-07-02 23:05:18.383 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 30/50 | Train: 2129 bars, Test: 71 bars | Precision: 46.48%
+2026-07-02 23:05:18.518 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 31/50 | Train: 2200 bars, Test: 71 bars | Precision: 59.09%
+2026-07-02 23:05:18.831 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 32/50 | Train: 2271 bars, Test: 71 bars | Precision: 62.50%
+2026-07-02 23:05:18.975 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 33/50 | Train: 2342 bars, Test: 71 bars | Precision: 61.76%
+2026-07-02 23:05:19.093 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 34/50 | Train: 2413 bars, Test: 71 bars | Precision: 61.76%
+2026-07-02 23:05:19.456 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 35/50 | Train: 2484 bars, Test: 71 bars | Precision: 67.19%
+2026-07-02 23:05:19.683 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 36/50 | Train: 2555 bars, Test: 71 bars | Precision: 53.52%
+2026-07-02 23:05:19.821 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 37/50 | Train: 2626 bars, Test: 71 bars | Precision: 61.90%
+2026-07-02 23:05:19.944 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 38/50 | Train: 2697 bars, Test: 71 bars | Precision: 52.11%
+2026-07-02 23:05:20.068 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 39/50 | Train: 2768 bars, Test: 71 bars | Precision: 42.11%
+2026-07-02 23:05:20.244 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 40/50 | Train: 2839 bars, Test: 71 bars | Precision: 30.00%
+2026-07-02 23:05:20.427 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 41/50 | Train: 2910 bars, Test: 71 bars | Precision: 60.71%
+2026-07-02 23:05:20.553 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 42/50 | Train: 2981 bars, Test: 71 bars | Precision: 49.23%
+2026-07-02 23:05:20.727 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 43/50 | Train: 3052 bars, Test: 71 bars | Precision: 55.93%
+2026-07-02 23:05:20.891 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 44/50 | Train: 3123 bars, Test: 71 bars | Precision: 76.47%
+2026-07-02 23:05:21.032 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 45/50 | Train: 3194 bars, Test: 71 bars | Precision: 70.83%
+2026-07-02 23:05:21.167 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 46/50 | Train: 3265 bars, Test: 71 bars | Precision: 56.60%
+2026-07-02 23:05:21.378 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 47/50 | Train: 3336 bars, Test: 71 bars | Precision: 53.73%
+2026-07-02 23:05:21.529 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 48/50 | Train: 3407 bars, Test: 71 bars | Precision: 54.84%
+2026-07-02 23:05:21.711 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 49/50 | Train: 3478 bars, Test: 71 bars | Precision: 71.70%
+2026-07-02 23:05:21.924 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 50/50 | Train: 3549 bars, Test: 71 bars | Precision: 70.45%
+2026-07-02 23:05:21.926 | SUCCESS  | src.backtester.validator:evaluate:61 - ✅ Walk-Forward Validation เสร็จสมบูรณ์ | Average Precision: 60.51%
+2026-07-02 23:05:21.926 | INFO     | __main__:main:239 - --- [🤖 ขั้นตอนที่ 2: เทรนสมองกลฝั่ง SHORT] ---
+2026-07-02 23:05:21.927 | INFO     | src.ml_engine.lgb_trainer:optimize_and_train:62 - เริ่มกระบวนการ Optuna Hyperparameter Tuning (LightGBM)...
+2026-07-02 23:05:33.953 | SUCCESS  | src.ml_engine.lgb_trainer:optimize_and_train:72 - ค้นพบ Best Params: {'learning_rate': 0.02795611510151794, 'num_leaves': 17, 'max_depth': 3, 'min_child_samples': 184, 'feature_fraction': 0.6879442937682138, 'bagging_fraction': 0.8298797947891241, 'reg_alpha': 0.5077522665767189, 'reg_lambda': 0.7382593965034835, 'objective': 'binary', 'verbosity': -1}
+2026-07-02 23:05:33.953 | INFO     | src.ml_engine.lgb_trainer:optimize_and_train:75 - กำลัง Train โมเดลรอบสุดท้ายด้วย Best Params...
+2026-07-02 23:05:34.084 | INFO     | src.backtester.validator:evaluate:15 - เริ่มทำ Walk-Forward Validation จำนวน 50 Folds...
+2026-07-02 23:05:34.098 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 1/50 | Train: 70 bars, Test: 71 bars | Precision: 71.83%
+2026-07-02 23:05:34.138 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 2/50 | Train: 141 bars, Test: 71 bars | Precision: 61.97%
+2026-07-02 23:05:34.163 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 3/50 | Train: 212 bars, Test: 71 bars | Precision: 69.01%
+2026-07-02 23:05:34.185 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 4/50 | Train: 283 bars, Test: 71 bars | Precision: 47.89%
+2026-07-02 23:05:34.212 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 5/50 | Train: 354 bars, Test: 71 bars | Precision: 45.07%
+2026-07-02 23:05:34.263 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 6/50 | Train: 425 bars, Test: 71 bars | Precision: 77.59%
+2026-07-02 23:05:34.300 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 7/50 | Train: 496 bars, Test: 71 bars | Precision: 70.49%
+2026-07-02 23:05:34.610 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 8/50 | Train: 567 bars, Test: 71 bars | Precision: 70.00%
+2026-07-02 23:05:34.663 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 9/50 | Train: 638 bars, Test: 71 bars | Precision: 74.65%
+2026-07-02 23:05:34.713 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 10/50 | Train: 709 bars, Test: 71 bars | Precision: 64.79%
+2026-07-02 23:05:34.779 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 11/50 | Train: 780 bars, Test: 71 bars | Precision: 67.61%
+2026-07-02 23:05:34.849 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 12/50 | Train: 851 bars, Test: 71 bars | Precision: 67.61%
+2026-07-02 23:05:34.924 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 13/50 | Train: 922 bars, Test: 71 bars | Precision: 50.70%
+2026-07-02 23:05:34.987 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 14/50 | Train: 993 bars, Test: 71 bars | Precision: 62.86%
+2026-07-02 23:05:35.052 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 15/50 | Train: 1064 bars, Test: 71 bars | Precision: 66.20%
+2026-07-02 23:05:35.120 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 16/50 | Train: 1135 bars, Test: 71 bars | Precision: 70.77%
+2026-07-02 23:05:35.180 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 17/50 | Train: 1206 bars, Test: 71 bars | Precision: 78.33%
+2026-07-02 23:05:35.267 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 18/50 | Train: 1277 bars, Test: 71 bars | Precision: 58.21%
+2026-07-02 23:05:35.344 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 19/50 | Train: 1348 bars, Test: 71 bars | Precision: 56.86%
+2026-07-02 23:05:35.420 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 20/50 | Train: 1419 bars, Test: 71 bars | Precision: 65.15%
+2026-07-02 23:05:35.498 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 21/50 | Train: 1490 bars, Test: 71 bars | Precision: 75.36%
+2026-07-02 23:05:35.584 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 22/50 | Train: 1561 bars, Test: 71 bars | Precision: 45.90%
+2026-07-02 23:05:35.679 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 23/50 | Train: 1632 bars, Test: 71 bars | Precision: 70.42%
+2026-07-02 23:05:35.879 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 24/50 | Train: 1703 bars, Test: 71 bars | Precision: 69.49%
+2026-07-02 23:05:36.132 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 25/50 | Train: 1774 bars, Test: 71 bars | Precision: 60.00%
+2026-07-02 23:05:36.263 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 26/50 | Train: 1845 bars, Test: 71 bars | Precision: 57.81%
+2026-07-02 23:05:36.381 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 27/50 | Train: 1916 bars, Test: 71 bars | Precision: 78.05%
+2026-07-02 23:05:36.599 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 28/50 | Train: 1987 bars, Test: 71 bars | Precision: 62.96%
+2026-07-02 23:05:36.744 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 29/50 | Train: 2058 bars, Test: 71 bars | Precision: 66.20%
+2026-07-02 23:05:36.866 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 30/50 | Train: 2129 bars, Test: 71 bars | Precision: 68.66%
+2026-07-02 23:05:36.961 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 31/50 | Train: 2200 bars, Test: 71 bars | Precision: 67.14%
+2026-07-02 23:05:37.049 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 32/50 | Train: 2271 bars, Test: 71 bars | Precision: 62.07%
+2026-07-02 23:05:37.139 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 33/50 | Train: 2342 bars, Test: 71 bars | Precision: 60.00%
+2026-07-02 23:05:37.247 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 34/50 | Train: 2413 bars, Test: 71 bars | Precision: 42.86%
+2026-07-02 23:05:37.334 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 35/50 | Train: 2484 bars, Test: 71 bars | Precision: 53.85%
+2026-07-02 23:05:37.445 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 36/50 | Train: 2555 bars, Test: 71 bars | Precision: 66.67%
+2026-07-02 23:05:37.536 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 37/50 | Train: 2626 bars, Test: 71 bars | Precision: 58.21%
+2026-07-02 23:05:37.618 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 38/50 | Train: 2697 bars, Test: 71 bars | Precision: 63.64%
+2026-07-02 23:05:37.718 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 39/50 | Train: 2768 bars, Test: 71 bars | Precision: 80.28%
+2026-07-02 23:05:37.815 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 40/50 | Train: 2839 bars, Test: 71 bars | Precision: 92.31%
+2026-07-02 23:05:37.908 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 41/50 | Train: 2910 bars, Test: 71 bars | Precision: 66.20%
+2026-07-02 23:05:38.011 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 42/50 | Train: 2981 bars, Test: 71 bars | Precision: 77.46%
+2026-07-02 23:05:38.124 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 43/50 | Train: 3052 bars, Test: 71 bars | Precision: 70.42%
+2026-07-02 23:05:38.217 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 44/50 | Train: 3123 bars, Test: 71 bars | Precision: 54.93%
+2026-07-02 23:05:38.313 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 45/50 | Train: 3194 bars, Test: 71 bars | Precision: 61.97%
+2026-07-02 23:05:38.403 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 46/50 | Train: 3265 bars, Test: 71 bars | Precision: 70.42%
+2026-07-02 23:05:38.508 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 47/50 | Train: 3336 bars, Test: 71 bars | Precision: 54.93%
+2026-07-02 23:05:38.627 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 48/50 | Train: 3407 bars, Test: 71 bars | Precision: 67.61%
+2026-07-02 23:05:38.744 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 49/50 | Train: 3478 bars, Test: 71 bars | Precision: 56.06%
+2026-07-02 23:05:38.843 | DEBUG    | src.backtester.validator:evaluate:56 - Fold 50/50 | Train: 3549 bars, Test: 71 bars | Precision: 59.15%
+2026-07-02 23:05:38.843 | SUCCESS  | src.backtester.validator:evaluate:61 - ✅ Walk-Forward Validation เสร็จสมบูรณ์ | Average Precision: 64.77%
+2026-07-02 23:05:38.843 | INFO     | __main__:main:248 - --- [🛠️ ขั้นตอนที่ 3: จัดการระยะแถวข้อมูลให้เท่ากันเพื่อป้องกัน KeyError] ---
+2026-07-02 23:05:38.843 | INFO     | __main__:main:270 - --- [📈 ขั้นตอนที่ 4: เริ่มต้นทำแบ็คเทสต์แบบ Positive Expectancy Engine] ---
+2026-07-02 23:05:39.407 | INFO     | __main__:main:296 - 
+==================================================
+2026-07-02 23:05:39.407 | INFO     | __main__:main:297 - 🛡️ ผลประกอบการเวอร์ชัน Positive Expectancy Engine 🛡️
+2026-07-02 23:05:39.407 | INFO     | __main__:main:298 - ==================================================
